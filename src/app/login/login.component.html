@@ -1,32 +1,68 @@
 <form class="mt-50 container">
+
+  <!-- Username input -->
   <div class="form-group">
     <label for="InputEmail">Email address</label>
     <input class="form-control" id="usernameinput" aria-describedby="emailHelp" placeholder="Enter Username"
-           [(ngModel)]="username">
+           name="Username"
+           [(ngModel)]="login.username">
     <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
   </div>
+
+  <!-- Password input -->
   <div class="form-group">
-    <label for="InputPassword">Password</label>
-    <input type="password" class="form-control" id="passwordinput" placeholder="Password" [(ngModel)]="password">
+    <label for="passwordinput">Password</label>
+    <input type="password" class="form-control" id="passwordinput" placeholder="Password" [(ngModel)]="login.password"
+           name="Password">
   </div>
+
+  <!-- Position input -->
   <div class="form-group">
-    <label for="InputPosition">Position #</label>
-    <input class="form-control" id="Positioninput" [(ngModel)]="position">
+    <label for="Positioninput">Position #</label>
+    <input class="form-control" id="Positioninput" [(ngModel)]="login.position" name="position">
   </div>
+
+  <!-- Loop DDL -->
   <div class="form-group">
-    <div class="dropdown show ">
-      <a class="btn btn-light  w-100 text-left" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class=""> loop</span><span class = "dropdown-toggle float-right"></span>
+    <label for="LoopSelect">Loop</label>
+    <div id="LoopSelect" class="dropdown show">
+      <a class="btn btn-light  w-100 text-left" href="#" role="button" id="dropdownLoop" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false"
+      >
+        <span class="">{{login.loop}}</span><span class="dropdown-toggle float-right"></span>
+      </a>
+
+      <div class="dropdown-menu w-100" aria-labelledby="dropdownLoop">
+        <a class="dropdown-item" *ngFor="let pair of loopDdlValues" (click)=onClickLoopOption(pair.val)>
+          {{pair.val}} </a>
+      </div>
+    </div>
+  </div>
+  <!-- Stop DDL -->
+  <div class="form-group">
+    <label for="stopSelect">Stop</label>
+    <div id="stopSelect" class="dropdown show ">
+      <a class="btn btn-light  w-100 text-left" href="#" role="button" id="dropdownStop" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+
+        <span class="">{{login.stop}</span><span class="dropdown-toggle float-right"></span>
       </a>
 
       <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+        <a class="dropdown-item" *ngFor="let stop of gLoopStops" (click)=onClickStopOption(stop)>
+          {{stop}} </a>
       </div>
+    </div>
+
+    <div class="form-group mt-5">
+      <button type="button" class="btn btn-success w-100"
+              (click)="onClickLogin()">
+        Log In
+      </button>
     </div>
   </div>
 
 </form>
 
 
+{{login.loop}}
