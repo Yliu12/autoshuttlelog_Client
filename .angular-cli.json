@@ -62,5 +62,6 @@
   "defaults": {
     "styleExt": "css",
     "component": {}
-  }
+  },
+  "serviceWorker": true
 }
