@@ -3,15 +3,16 @@
   <!-- Username input -->
   <div class="form-group">
     <label for="usernameinput">Email address</label>
-    <input class="form-control"  id="usernameinput" aria-describedby="emailHelp" placeholder="Enter Username"
+    <input class="form-control" id="usernameinput" aria-describedby="emailHelp" placeholder="Enter Username"
            name="Username"
            [(ngModel)]="login.username"
            [ngClass]="{'is-valid':login.username != ''}"
     >
-    <div class="invalid-feedback" *ngIf = "true">
+    <div class="invalid-feedback" *ngIf="true">
       Please input a username.
     </div>
-    <small id="usernamealert" *ngIf = "!formValidation.userName" class="form-text text-danger"> Please input a username.</small>
+    <small id="usernamealert" *ngIf="!formValidation.userName" class="form-text text-danger"> Please input a username.
+    </small>
   </div>
 
   <!-- Password input -->
@@ -21,7 +22,8 @@
            name="Password"
            [ngClass]="{'is-valid':login.password != ''}"
     >
-    <small id="passwordalert" *ngIf = "!formValidation.password" class="form-text text-danger"> Please input a username.</small>
+    <small id="passwordalert" *ngIf="!formValidation.password" class="form-text text-danger"> Please input a username.
+    </small>
 
   </div>
 
@@ -31,7 +33,8 @@
     <input class="form-control" id="Positioninput" [(ngModel)]="login.position" name="position"
            [ngClass]="{'is-valid':login.position != ''}"
     >
-    <small id="positonalert" *ngIf = "!formValidation.position" class="form-text text-danger"> Please input a username.</small>
+    <small id="positonalert" *ngIf="!formValidation.position" class="form-text text-danger"> Please input a username.
+    </small>
 
   </div>
 
@@ -71,15 +74,16 @@
           {{stop}} </a>
       </div>
     </div>
-
-    <!-- BTN Login -->
-    <div class="form-group mt-5">
-      <button type="button" class="btn btn-success w-100"
-              (click)="onClickLogin()">
-        Log In
-      </button>
-    </div>
   </div>
+
+  <!-- BTN Login -->
+  <div class="form-group mt-5">
+    <button type="button" class="btn btn-success w-100"
+            (click)="onClickLogin()">
+      Log In
+    </button>
+  </div>
+
 
 </form>
 

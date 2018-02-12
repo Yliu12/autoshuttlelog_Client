@@ -16,6 +16,7 @@ export class ShuttleinfoComponent implements OnInit {
   formBus = {
     id: '',
     loop: '',
+    stop: ''
   };
   loopDdlValues = [
     {key: 'G', val: 'Green Loop'},
