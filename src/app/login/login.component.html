@@ -2,27 +2,44 @@
 
   <!-- Username input -->
   <div class="form-group">
-    <label for="InputEmail">Email address</label>
-    <input class="form-control" id="usernameinput" aria-describedby="emailHelp" placeholder="Enter Username"
+    <label for="usernameinput">Email address</label>
+    <input class="form-control"  id="usernameinput" aria-describedby="emailHelp" placeholder="Enter Username"
            name="Username"
-           [(ngModel)]="login.username">
-    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+           [(ngModel)]="login.username"
+           [ngClass]="{'is-valid':login.username != ''}"
+    >
+    <div class="invalid-feedback" *ngIf = "true">
+      Please input a username.
+    </div>
+    <small id="usernamealert" *ngIf = "!formValidation.userName" class="form-text text-danger"> Please input a username.</small>
   </div>
 
   <!-- Password input -->
   <div class="form-group">
     <label for="passwordinput">Password</label>
     <input type="password" class="form-control" id="passwordinput" placeholder="Password" [(ngModel)]="login.password"
-           name="Password">
+           name="Password"
+           [ngClass]="{'is-valid':login.password != ''}"
+    >
+    <small id="passwordalert" *ngIf = "!formValidation.password" class="form-text text-danger"> Please input a username.</small>
+
   </div>
 
   <!-- Position input -->
   <div class="form-group">
     <label for="Positioninput">Position #</label>
-    <input class="form-control" id="Positioninput" [(ngModel)]="login.position" name="position">
+    <input class="form-control" id="Positioninput" [(ngModel)]="login.position" name="position"
+           [ngClass]="{'is-valid':login.position != ''}"
+    >
+    <small id="positonalert" *ngIf = "!formValidation.position" class="form-text text-danger"> Please input a username.</small>
+
   </div>
 
   <!-- Loop DDL -->
+  <!--
+  TODO edit text color
+  TODO extract to component
+  -->
   <div class="form-group">
     <label for="LoopSelect">Loop</label>
     <div id="LoopSelect" class="dropdown show">
@@ -38,6 +55,7 @@
       </div>
     </div>
   </div>
+
   <!-- Stop DDL -->
   <div class="form-group">
     <label for="stopSelect">Stop</label>
@@ -54,6 +72,7 @@
       </div>
     </div>
 
+    <!-- BTN Login -->
     <div class="form-group mt-5">
       <button type="button" class="btn btn-success w-100"
               (click)="onClickLogin()">

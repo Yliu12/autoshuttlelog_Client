@@ -14,7 +14,19 @@ export class AppComponent {
     'token': ''
   };
 
-  onNavigate(page: string ) {
+  shuttle = {
+    id: '',
+    loop: 'Green Loop',
+    stop: 'Shiedler'
+  };
+
+  properties = {
+    user: this.user,
+    shuttle: this.shuttle
+  };
+
+
+  onNavigate(page: string) {
     this.loadedPage = page;
   }
 
