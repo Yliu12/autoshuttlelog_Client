@@ -1,0 +1,44 @@
+<form class="mt-50 container">
+
+  <!-- Username input -->
+  <div class="form-group">
+    <label for="busidinput">Bus ID</label>
+    <input class="form-control" id="busidinput" aria-describedby="emailHelp" placeholder="{{formBus.id}}"
+           name="id"
+           [(ngModel)]="formBus.id">
+    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+  <!-- Loop DDL -->
+  <!--
+  TODO edit text color
+  TODO extract to component
+  -->
+  <div class="form-group">
+    <label for="LoopSelect">Loop</label>
+    <div id="LoopSelect" class="dropdown show">
+      <a class="btn btn-light  w-100 text-left" href="#" role="button" id="dropdownLoop" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false"
+      >
+        <span class="">{{formBus.loop}}</span><span class="dropdown-toggle float-right"></span>
+      </a>
+
+      <div class="dropdown-menu w-100" aria-labelledby="dropdownLoop">
+        <a class="dropdown-item" *ngFor="let pair of loopDdlValues" (click)=onClickLoopOption(pair.val)>
+          {{pair.val}} </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- BTN Login -->
+  <div class="form-group mt-5">
+    <button type="button" class="btn btn-success w-100"
+            (click)="onClickUpdate()">
+      UPDATE
+    </button>
+  </div>
+
+</form>
+
+
+<!--{{login.loop}}-->
