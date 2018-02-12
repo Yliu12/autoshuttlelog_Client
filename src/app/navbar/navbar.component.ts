@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +6,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  @Input() userinfo: {
+    username: string,
+    password: string,
+    token: string
+  };
+  @Output() pageSelected = new EventEmitter<string>();
+  onselectPge = 'logIn';
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+  }
+
+  onSelect(page: string) {
+    this.onselectPge = page;
+    this.pageSelected.emit(page);
   }
 
 }

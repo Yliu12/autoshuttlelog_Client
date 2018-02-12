@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -6,6 +6,12 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  @Input() userinfo: {
+    username: string,
+    password: string,
+    token: string
+  };
+
   login = {
     username: '',
     password: '',
@@ -28,7 +34,6 @@ export class LoginComponent implements OnInit {
     'Scheidler'];
 
 
-
   constructor() {
   }
 
@@ -36,6 +41,8 @@ export class LoginComponent implements OnInit {
   }
 
   onClickLogin() {
+    this.userinfo.username = this.login.username;
+    this.userinfo.password = this.login.password;
   }
 
   onClickLoopOption(option) {

@@ -8,12 +8,14 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {LoginComponent} from './login/login.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { LogentryComponent } from './logentry/logentry.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    LogentryComponent
   ],
   imports: [
     BrowserModule,
@@ -24,5 +26,6 @@ import { environment } from '../environments/environment';
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
 }
 
