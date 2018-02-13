@@ -37,13 +37,13 @@
   <!-- Boarded input -->
   <div class="">
     <label for="boardedinput">Boarded</label>
-    <div class="input-group input-group-lg">
+    <div class="input-group input-group-xl">
       <button class="btn btn-outline-secondary input-group-prepend w-25" type="button"
               (click)="logLine.boarded==0? 0: logLine.boarded = logLine.boarded-1">
         -
       </button>
 
-      <input class=" input-group-apend form-control" id="boardedinput" [(ngModel)]="logLine.boarded" name = "boarded">
+      <input class=" input-group-apend form-control text-center" id="boardedinput" [(ngModel)]="logLine.boarded" name = "boarded">
 
         <button type="button" class="btn btn-secondary input-group-append w-25"
                 (click)="logLine.boarded = logLine.boarded+1">
@@ -56,13 +56,13 @@
   <!-- left input -->
   <div class="">
     <label for="boardedinput">left at stop</label>
-    <div class="input-group  input-group-lg">
+    <div class="input-group  input-group-xl">
       <button class="btn btn-outline-secondary input-group-prepend w-25" type="button"
               (click)="logLine.boarded==0? 0: logLine.left = logLine.left-1">
         -
       </button>
 
-      <input class=" input-group-apend form-control" id="leftinput" [(ngModel)]="logLine.left" name = "left">
+      <input class=" input-group-apend form-control text-center" id="leftinput" [(ngModel)]="logLine.left" name = "left">
 
       <button type="button" class="btn btn-secondary input-group-append w-25"
               (click)="logLine.left = logLine.left+1">
