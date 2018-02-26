@@ -11,6 +11,10 @@ import { environment } from '../environments/environment';
 import { LogentryComponent } from './logentry/logentry.component';
 import { ShuttleinfoComponent } from './shuttleinfo/shuttleinfo.component';
 
+import {HttpClientModule} from '@angular/common/http';
+
+import {AppGlobals} from './service/app.global';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,9 +26,10 @@ import { ShuttleinfoComponent } from './shuttleinfo/shuttleinfo.component';
   imports: [
     BrowserModule,
     FormsModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AppGlobals],
   bootstrap: [AppComponent]
 })
 export class AppModule {

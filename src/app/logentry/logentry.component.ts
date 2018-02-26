@@ -1,12 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DatePipe} from '@angular/common';
+import {LogService} from '../service/logs.service';
+import {Log} from '../service/log';
 
 
 @Component({
   selector: 'app-logentry',
   templateUrl: './logentry.component.html',
   styleUrls: ['./logentry.component.css'],
-  providers: [DatePipe]
+  providers: [DatePipe, LogService]
 })
 export class LogentryComponent implements OnInit {
 
@@ -16,19 +18,27 @@ export class LogentryComponent implements OnInit {
     'Alumni',
     'Stadium',
     'Scheidler'];
-  logLine = {
-    stop: '',
-    time: Date.now(),
-    boarded: 0,
-    left:0
-  };
-  log = [];
+  logLine = new Log();
+  logs: Log[] = [];
 
 
-  constructor() {
+  constructor(private logService: LogService) {
     setInterval(() => {
       this.logLine.time = Date.now();
     }, 1000);
+
+    this.logs = this.logService.getLogs();
+
+
+    // this.logService.getLogs().subscribe(
+    //   data => {
+    //     console.log('Sibling1Component-received from sibling2: ' + data);
+    //     this.searchCaseNumber = data;
+    //     this.sibling1Form.patchValue({
+    //       caseNumber: data
+    //     });
+    //   });
+
   }
 
   @Input()
@@ -38,6 +48,9 @@ export class LogentryComponent implements OnInit {
   shuttleInfo;
 
   ngOnInit() {
+    this.logLine.numberBoarded = 0;
+    this.logLine.numberLeft = 0;
+    this.logLine.stop = this.shuttleInfo.stop;
   }
 
   onClickStopOption(stop) {
@@ -46,7 +59,8 @@ export class LogentryComponent implements OnInit {
   }
 
   onClickEnter() {
-    this.log.push(this.logLine);
+    this.logService.addLog(this.logLine);
+    this.logService.sendLogs();
   }
 
 }
