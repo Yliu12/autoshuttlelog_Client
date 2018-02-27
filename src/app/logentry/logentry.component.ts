@@ -13,6 +13,8 @@ import {UserService} from '../service/user.service';
 })
 export class LogentryComponent implements OnInit {
 
+  showSuccessCover: boolean;
+
   gLoopStops = [
     'Notrh Shelter - N',
     'Anthony - N',
@@ -50,6 +52,7 @@ export class LogentryComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
+    this.showSuccessCover = false;
     this.logLine = new Log();
     this.logLine.time = Date.now();
     this.logLine.stop = this.shuttleInfo.stop;
@@ -61,6 +64,10 @@ export class LogentryComponent implements OnInit {
   }
 
   onClickEnter() {
+    this.showSuccessCover = true;
+    setTimeout(() => {
+      this.disableSuccessCover();
+    }, 2000);
     this.logLine.driver = this.userinfo.userName;
     this.logLine.busId = this.shuttleInfo.id;
     this.logLine.position = this.shuttleInfo.position;
@@ -75,6 +82,10 @@ export class LogentryComponent implements OnInit {
 
     // TODO move to timer in app.component
     this.logService.sendLogs();
+  }
+
+  disableSuccessCover() {
+    this.showSuccessCover = false;
   }
 
   getUser(): void {

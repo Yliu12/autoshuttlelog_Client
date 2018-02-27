@@ -1,86 +1,93 @@
-<form class="mt-50 container">
-
-
-  <!-- LBL BUS ID & Loop -->
-  <div class="form-group row w-100">
-    <p for="busidinput" class="font-weight-bold col-8">BUS {{shuttleInfo.id === ""? 'Please Enter BUS ID':shuttleInfo.id}}
-    <p for="busidinput" class=" font-weight-bold text-right col-4">{{shuttleInfo.loop}}</p>
+<div class=" container " [hidden]="!showSuccessCover">
+  <div class=" text-center   ">
+    <img class="col pl-5 pr-5" src="../../assets/check-success.png">
   </div>
+</div>
 
-  <!-- Stop DDL -->
-  <div class="form-group">
-    <label for="stopSelect">Stop</label>
-    <div id="stopSelect" class="dropdown show ">
-      <a class="btn btn-light  w-100 text-left" href="#" role="button" id="dropdownStop" data-toggle="dropdown"
-         aria-haspopup="true" aria-expanded="false">
+<div [hidden]="showSuccessCover">
+  <form class="mt-50 container">
+    <!-- LBL BUS ID & Loop -->
+    <div class="form-group row w-100">
+      <p for="busidinput" class="font-weight-bold col-8">BUS {{shuttleInfo.id === ""? 'Please Enter BUS
+        ID':shuttleInfo.id}}
+      <p for="busidinput" class=" font-weight-bold text-right col-4">{{shuttleInfo.loop}}</p>
+    </div>
 
-        <span class="">{{logLine.stop}}</span><span class="dropdown-toggle float-right"></span>
-      </a>
+    <!-- Stop DDL -->
+    <div class="form-group">
+      <label for="stopSelect">Stop</label>
+      <div id="stopSelect" class="dropdown show ">
+        <a class="btn btn-light  w-100 text-left" href="#" role="button" id="dropdownStop" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
 
-      <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" *ngFor="let stop of gLoopStops" (click)=onClickStopOption(stop)>
-          {{stop}} </a>
+          <span class="">{{logLine.stop}}</span><span class="dropdown-toggle float-right"></span>
+        </a>
+
+        <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" *ngFor="let stop of gLoopStops" (click)=onClickStopOption(stop)>
+            {{stop}} </a>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Time input -->
-  <div class="form-group">
-    <label for="timeinput">Bus ID</label>
-    <input class="form-control" id="timeinput" aria-describedby="emailHelp"
-           name="time"
-           [ngModel]="logLine.time | date: 'short'"
-    >
-
-  </div>
-
-  <!-- Boarded input -->
-  <div class="">
-    <label for="boardedinput">Boarded</label>
-    <div class="input-group input-group-xl">
-      <button class="btn btn-outline-secondary input-group-prepend w-25" type="button"
-              (click)="logLine.numberBoarded ==0? 0: logLine.numberBoarded = logLine.numberBoarded-1">
-        -
-      </button>
-
-      <input class=" input-group-apend form-control text-center" id="boardedinput" [(ngModel)]="logLine.numberBoarded"
-             name="boarded">
-
-
-      <button type="button" class="btn btn-secondary input-group-append w-25"
-              (click)="logLine.numberBoarded = logLine.numberBoarded+1">
-        +
-      </button>
+    <!-- Time input -->
+    <div class="form-group">
+      <label for="timeinput">Bus ID</label>
+      <input class="form-control" id="timeinput" aria-describedby="emailHelp"
+             name="time"
+             [ngModel]="logLine.time | date: 'short'"
+      >
 
     </div>
-  </div>
 
-  <!-- left input -->
-  <div class="">
-    <label for="boardedinput">left at stop</label>
-    <div class="input-group  input-group-xl">
-      <button class="btn btn-outline-secondary input-group-prepend w-25" type="button"
-              (click)="logLine.numberLeft==0? 0: logLine.numberLeft = logLine.numberLeft-1">
-        -
-      </button>
+    <!-- Boarded input -->
+    <div class="">
+      <label for="boardedinput">Boarded</label>
+      <div class="input-group input-group-xl">
+        <button class="btn btn-outline-secondary input-group-prepend w-25" type="button"
+                (click)="logLine.numberBoarded ==0? 0: logLine.numberBoarded = logLine.numberBoarded-1">
+          -
+        </button>
 
-      <input class=" input-group-apend form-control text-center" id="leftinput" [(ngModel)]="logLine.numberLeft"
-             name="left">
+        <input class=" input-group-apend form-control text-center" id="boardedinput" [(ngModel)]="logLine.numberBoarded"
+               name="boarded">
 
-      <button type="button" class="btn btn-secondary input-group-append w-25"
-              (click)="logLine.numberLeft = logLine.numberLeft+1">
-        +
-      </button>
 
+        <button type="button" class="btn btn-secondary input-group-append w-25"
+                (click)="logLine.numberBoarded = logLine.numberBoarded+1">
+          +
+        </button>
+
+      </div>
     </div>
-  </div>
 
-  <!-- BTN Login -->
-  <div class="form-group mt-5">
-    <button type="button" class="btn btn-success w-100"
-            (click)="onClickEnter()">
-      ENTER
-    </button>
-  </div>
+    <!-- left input -->
+    <div class="">
+      <label for="boardedinput">left at stop</label>
+      <div class="input-group  input-group-xl">
+        <button class="btn btn-outline-secondary input-group-prepend w-25" type="button"
+                (click)="logLine.numberLeft==0? 0: logLine.numberLeft = logLine.numberLeft-1">
+          -
+        </button>
 
-</form>
+        <input class=" input-group-apend form-control text-center" id="leftinput" [(ngModel)]="logLine.numberLeft"
+               name="left">
+
+        <button type="button" class="btn btn-secondary input-group-append w-25"
+                (click)="logLine.numberLeft = logLine.numberLeft+1">
+          +
+        </button>
+
+      </div>
+    </div>
+
+    <!-- BTN Login -->
+    <div class="form-group mt-5">
+      <button type="button" class="btn btn-success w-100"
+              (click)="onClickEnter()">
+        ENTER
+      </button>
+    </div>
+
+  </form>
+</div>
