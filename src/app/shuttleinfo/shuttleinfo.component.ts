@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-shuttleinfo',
@@ -12,7 +12,7 @@ export class ShuttleinfoComponent implements OnInit {
     loop: string,
     stop: string
   };
-  @Output()
+  @Output() pageSelected = new EventEmitter<string>();
   formBus = {
     id: '',
     loop: '',
@@ -37,6 +37,8 @@ export class ShuttleinfoComponent implements OnInit {
   onClickUpdate() {
     this.shuttleInfo.id = this.formBus.id;
     this.shuttleInfo.loop = this.formBus.loop;
+    this.pageSelected.emit('logEntry');
+
   }
 
   onClickLoopOption(option) {

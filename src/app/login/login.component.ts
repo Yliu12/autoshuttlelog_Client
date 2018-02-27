@@ -1,16 +1,18 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
+import {User} from '../service/user';
+import {UserService} from '../service/user.service';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: []
+
 })
 export class LoginComponent implements OnInit {
-  @Input() userinfo: {
-    username: string,
-    password: string,
-    token: string
-  };
+
   @Input() shuttleInfo;
   @Output() pageSelected = new EventEmitter<string>();
 
@@ -23,15 +25,17 @@ export class LoginComponent implements OnInit {
   login = {
     username: '',
     password: '',
-    position: '',
     loop: '',
-    stop: ''
+    stop: '',
+    position: '',
   };
+  userinfo = new User;
   formValidation = {
     userName: true,
     password: true,
     position: true
   };
+  displayErrorMessage;
 
   gLoopStops = [
     'Notrh Shelter - N',
@@ -41,7 +45,8 @@ export class LoginComponent implements OnInit {
     'Scheidler'];
 
 
-  constructor() {
+  constructor(private userService: UserService) {
+
   }
 
   ngOnInit() {
@@ -55,12 +60,26 @@ export class LoginComponent implements OnInit {
     if (!this.formIsValid()) {
       return;
     }
-    this.userinfo.username = this.login.username;
+    this.userinfo.userName = this.login.username;
     this.userinfo.password = this.login.password;
     this.shuttleInfo.loop = this.login.loop;
-    this.shuttleInfo.stop = this.login.stop;
+    this.shuttleInfo.this = this.login.stop;
+    this.shuttleInfo.position = this.login.position;
 
-    this.pageSelected.emit('logEntry');
+    const loginResult = this.userService.login(this.userinfo, (data) => {
+      console.log(data);
+
+      if (!data) {
+        this.displayErrorMessage = 'unknow error occured';
+      }
+      if (data['error']) {
+        const e = data['error'];
+        this.displayErrorMessage = e.msgDes;
+      }
+      if (data['respBody']) {
+        this.pageSelected.emit('logEntry');
+      }
+    });
   }
 
   formIsValid() {

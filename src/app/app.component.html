@@ -19,11 +19,12 @@
 <!--</ul>-->
 
 <app-navbar [userinfo]="user" (pageSelected)="onNavigate($event)"></app-navbar>
-<app-login *ngIf="loadedPage == 'logIn'" [userinfo]="properties.user" [shuttleInfo]=" properties.shuttle"
+<app-login *ngIf="loadedPage == 'logIn'" [shuttleInfo]=" properties.shuttle"
            (pageSelected)="onNavigate($event)">
 </app-login>
-<app-logentry *ngIf="loadedPage == 'logEntry'" [userinfo]="properties.user" [shuttleInfo]="properties.shuttle">
+<app-logentry *ngIf="loadedPage == 'logEntry'" [shuttleInfo]="properties.shuttle">
 </app-logentry>
 
-<app-shuttleinfo *ngIf="loadedPage == 'editShuttle'" [shuttleInfo]="properties.shuttle"></app-shuttleinfo>
+<app-shuttleinfo *ngIf="loadedPage == 'editShuttle'" [shuttleInfo]="properties.shuttle"
+                 (pageSelected)="onNavigate($event)"></app-shuttleinfo>
 <!--{{user.username}}-->

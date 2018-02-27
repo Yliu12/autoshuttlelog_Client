@@ -1,11 +1,12 @@
 import {Component} from '@angular/core';
 import {LogService} from './service/logs.service';
+import {UserService} from './service/user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [LogService]
+  providers: [LogService, UserService]
 })
 export class AppComponent {
   loadedPage = 'logIn';
@@ -19,7 +20,8 @@ export class AppComponent {
   shuttle = {
     id: '',
     loop: 'Green Loop',
-    stop: 'Shiedler'
+    stop: 'Shiedler',
+    position: ''
   };
 
   properties = {

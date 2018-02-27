@@ -1,4 +1,4 @@
-<form class="mt-50 container">
+<form class="mt-1 container">
 
   <!-- Username input -->
   <div class="form-group">
@@ -8,10 +8,8 @@
            [(ngModel)]="login.username"
            [ngClass]="{'is-valid':login.username != ''}"
     >
-    <div class="invalid-feedback" *ngIf="true">
-      Please input a username.
-    </div>
-    <small id="usernamealert" *ngIf="!formValidation.userName" class="form-text text-danger"> Please input a username.
+
+    <small id="usernamealert" *ngIf="!formValidation.userName" class="form-text text-danger"> username is empty
     </small>
   </div>
 
@@ -22,7 +20,7 @@
            name="Password"
            [ngClass]="{'is-valid':login.password != ''}"
     >
-    <small id="passwordalert" *ngIf="!formValidation.password" class="form-text text-danger"> Please input a username.
+    <small id="passwordalert" *ngIf="!formValidation.password" class="form-text text-danger"> password is empty
     </small>
 
   </div>
@@ -33,7 +31,7 @@
     <input class="form-control" id="Positioninput" [(ngModel)]="login.position" name="position"
            [ngClass]="{'is-valid':login.position != ''}"
     >
-    <small id="positonalert" *ngIf="!formValidation.position" class="form-text text-danger"> Please input a username.
+    <small id="positonalert" *ngIf="!formValidation.position" class="form-text text-danger"> Position is empty
     </small>
 
   </div>
@@ -76,8 +74,11 @@
     </div>
   </div>
 
+  <div class="form-group mb-2">
+    <p class="text-danger text-center" *ngIf="displayErrorMessage">{{displayErrorMessage}}</p>
+  </div>
   <!-- BTN Login -->
-  <div class="form-group mt-5">
+  <div class="form-group">
     <button type="button" class="btn btn-success w-100"
             (click)="onClickLogin()">
       Log In

@@ -2,24 +2,25 @@ export class Log {
 
   id: number;
 
+  loopName: string;
 
-  loopName: String;
+  stop: string;
 
-
-  stop: String;
-
-
-  driver: String;
+  driver: string;
 
   numberBoarded: number;
 
-
   numberLeft: number;
 
-
-  busId: String;
-
+  busId: string;
 
   time: number;
+
+  position: string;
+
+  constructor() {
+    this.numberBoarded = 0;
+    this.numberLeft = 0;
+  }
 
 }

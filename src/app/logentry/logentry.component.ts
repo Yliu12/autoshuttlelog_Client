@@ -2,13 +2,14 @@ import {Component, Input, OnInit} from '@angular/core';
 import {DatePipe} from '@angular/common';
 import {LogService} from '../service/logs.service';
 import {Log} from '../service/log';
-
+import {User} from '../service/user';
+import {UserService} from '../service/user.service';
 
 @Component({
   selector: 'app-logentry',
   templateUrl: './logentry.component.html',
   styleUrls: ['./logentry.component.css'],
-  providers: [DatePipe, LogService]
+  providers: [DatePipe]
 })
 export class LogentryComponent implements OnInit {
 
@@ -22,7 +23,9 @@ export class LogentryComponent implements OnInit {
   logs: Log[] = [];
 
 
-  constructor(private logService: LogService) {
+  userinfo: User;
+
+  constructor(private logService: LogService, private userService: UserService) {
     setInterval(() => {
       this.logLine.time = Date.now();
     }, 1000);
@@ -41,15 +44,14 @@ export class LogentryComponent implements OnInit {
 
   }
 
-  @Input()
-  userinfo;
 
   @Input()
   shuttleInfo;
 
   ngOnInit() {
-    this.logLine.numberBoarded = 0;
-    this.logLine.numberLeft = 0;
+    this.getUser();
+    this.logLine = new Log();
+    this.logLine.time = Date.now();
     this.logLine.stop = this.shuttleInfo.stop;
   }
 
@@ -59,8 +61,27 @@ export class LogentryComponent implements OnInit {
   }
 
   onClickEnter() {
+    this.logLine.driver = this.userinfo.userName;
+    this.logLine.busId = this.shuttleInfo.id;
+    this.logLine.position = this.shuttleInfo.position;
+    this.logLine.loopName = this.shuttleInfo.loopName;
+    this.logLine.stop = this.shuttleInfo.stop;
     this.logService.addLog(this.logLine);
+    const numberofStop = this.gLoopStops.indexOf(this.logLine.stop);
+    this.logLine = new Log();
+    const nextStopIndex = (numberofStop === this.gLoopStops.length - 1 ? this.gLoopStops[0] : numberofStop + 1).toString();
+    this.shuttleInfo.stop = this.gLoopStops[nextStopIndex];
+    this.logLine.stop = this.shuttleInfo.stop;
+
+    // TODO move to timer in app.component
     this.logService.sendLogs();
+  }
+
+  getUser(): void {
+    this.userService.getUserObservable()
+      .subscribe(user => {
+        this.userinfo = user;
+      });
   }
 
 }
