@@ -4,7 +4,6 @@ import {LogService} from '../service/logs.service';
 import {Log} from '../service/log';
 import {User} from '../service/user';
 import {UserService} from '../service/user.service';
-import {userInfo} from "os";
 
 @Component({
   selector: 'app-logentry',
