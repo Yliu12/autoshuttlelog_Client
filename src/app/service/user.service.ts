@@ -9,11 +9,13 @@ import {Subject} from 'rxjs/Subject';
 import {AppGlobals} from './app.global';
 import {User} from './user';
 import {Md5} from 'ts-md5/dist/md5';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 
 @Injectable()
 export class UserService {
-  private user: User;
+  private user = new BehaviorSubject<User>(new User());
+
   private loginUrl = '/login';
 
   private serivceUrl = '';
@@ -31,15 +33,12 @@ export class UserService {
   }
 
   getUserObservable(): Observable<User> {
-    return of(this.user);
+    return this.user.asObservable();
   }
 
-  getUser(): User {
-    return Object.assign({}, this.user);
-  }
 
   setUser(user: User) {
-    this.user = user;
+    this.user.next(user);
   }
 
   private requestLogin(user: User) {
@@ -54,10 +53,17 @@ export class UserService {
     this.requestLogin(u).subscribe(
       data => {
         if (data['respBody']) {
-          this.user = data['respBody'];
+          this.user.next(data['respBody']);
         }
         callback(data);
       }
     );
   }
+
+
+  logOut() {
+    this.user.next(null);
+  }
+
+
 }

@@ -11,11 +11,6 @@ import {UserService} from './service/user.service';
 export class AppComponent {
   loadedPage = 'logIn';
   title = 'app';
-  user = {
-    'username': '',
-    'password': '',
-    'token': ''
-  };
 
   shuttle = {
     id: '',
@@ -25,7 +20,6 @@ export class AppComponent {
   };
 
   properties = {
-    user: this.user,
     shuttle: this.shuttle
   };
 

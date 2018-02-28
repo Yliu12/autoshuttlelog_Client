@@ -1,4 +1,6 @@
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import {UserService} from '../service/user.service';
+import {User} from '../service/user';
 
 @Component({
   selector: 'app-navbar',
@@ -6,23 +8,36 @@ import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  @Input() userinfo: {
-    username: string,
-    password: string,
-    token: string
-  };
-  @Output() pageSelected = new EventEmitter<string>();
-  onselectPge = 'logIn';
 
-  constructor() {
+  @Output() pageSelected = new EventEmitter<string>();
+  @Input() onselectPge;
+  userinfo: User = null;
+
+  constructor(private userService: UserService) {
+
   }
 
   ngOnInit() {
+    this.getUser();
   }
 
   onSelect(page: string) {
+    if (page === 'logOut') {
+      this.userService.logOut();
+      page = 'logIn';
+    }
+
     this.onselectPge = page;
     this.pageSelected.emit(page);
   }
 
+  getUser(): void {
+    this.userService.getUserObservable()
+      .subscribe(user => {
+        this.userinfo = user;
+        if (!user || !user.userName) {
+          this.pageSelected.emit('logIn');
+        }
+      });
+  }
 }

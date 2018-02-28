@@ -1,9 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DatePipe} from '@angular/common';
 import {LogService} from '../service/logs.service';
 import {Log} from '../service/log';
 import {User} from '../service/user';
 import {UserService} from '../service/user.service';
+import {userInfo} from "os";
 
 @Component({
   selector: 'app-logentry',
@@ -13,8 +14,11 @@ import {UserService} from '../service/user.service';
 })
 export class LogentryComponent implements OnInit {
 
-  showSuccessCover: boolean;
+  @Output() pageSelected = new EventEmitter<string>();
+  @Input() shuttleInfo;
 
+
+  showSuccessCover: boolean;
   gLoopStops = [
     'Notrh Shelter - N',
     'Anthony - N',
@@ -25,7 +29,7 @@ export class LogentryComponent implements OnInit {
   logs: Log[] = [];
 
 
-  userinfo: User;
+  userinfo: User = new User();
 
   constructor(private logService: LogService, private userService: UserService) {
     setInterval(() => {
@@ -46,9 +50,6 @@ export class LogentryComponent implements OnInit {
 
   }
 
-
-  @Input()
-  shuttleInfo;
 
   ngOnInit() {
     this.getUser();
@@ -71,7 +72,7 @@ export class LogentryComponent implements OnInit {
     this.logLine.driver = this.userinfo.userName;
     this.logLine.busId = this.shuttleInfo.id;
     this.logLine.position = this.shuttleInfo.position;
-    this.logLine.loopName = this.shuttleInfo.loopName;
+    this.logLine.loopName = this.shuttleInfo.loop;
     this.logLine.stop = this.shuttleInfo.stop;
     this.logService.addLog(this.logLine);
     const numberofStop = this.gLoopStops.indexOf(this.logLine.stop);
@@ -91,7 +92,12 @@ export class LogentryComponent implements OnInit {
   getUser(): void {
     this.userService.getUserObservable()
       .subscribe(user => {
-        this.userinfo = user;
+        if (!user || !user.userName) {
+          this.pageSelected.emit('logIn');
+          return;
+        }
+        this.userinfo = Object.assign({}, user);
+        console.log("111111" + this.userinfo);
       });
   }
 

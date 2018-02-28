@@ -2,7 +2,7 @@
 
   <!-- Username input -->
   <div class="form-group">
-    <label for="usernameinput">Email address</label>
+    <label for="usernameinput">Username</label>
     <input class="form-control" id="usernameinput" aria-describedby="emailHelp" placeholder="Enter Username"
            name="Username"
            [(ngModel)]="login.username"
@@ -77,6 +77,16 @@
   <div class="form-group mb-2">
     <p class="text-danger text-center" *ngIf="displayErrorMessage">{{displayErrorMessage}}</p>
   </div>
+
+  <!-- INPUT BUS ID -->
+  <div class="form-group">
+    <label for="busidinput">Bus ID</label>
+    <input class="form-control" id="busidinput" aria-describedby="emailHelp" placeholder="{{shuttleInfo.id}}"
+           name="id"
+           [(ngModel)]="shuttleInfo.id">
+    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
   <!-- BTN Login -->
   <div class="form-group">
     <button type="button" class="btn btn-success w-100"

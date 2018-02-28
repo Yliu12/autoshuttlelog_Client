@@ -1,6 +1,7 @@
 <div class=" container " [hidden]="!showSuccessCover">
   <div class=" text-center   ">
-    <img class="col pl-5 pr-5" src="../../assets/check-success.png">
+    <img class="mx-auto d-block" src="../../assets/check-success.png">
+    <h1 class="text-success mt-4">SUCCESS</h1>
   </div>
 </div>
 
@@ -8,9 +9,12 @@
   <form class="mt-50 container">
     <!-- LBL BUS ID & Loop -->
     <div class="form-group row w-100">
-      <p for="busidinput" class="font-weight-bold col-8">BUS {{shuttleInfo.id === ""? 'Please Enter BUS
-        ID':shuttleInfo.id}}
-      <p for="busidinput" class=" font-weight-bold text-right col-4">{{shuttleInfo.loop}}</p>
+      <p class="font-weight-bold col-8">
+        BUS {{shuttleInfo.id === ""? 'Please Enter BUS ID':shuttleInfo.id}}
+      </p>
+      <p  class=" font-weight-bold text-right col-4">
+        {{shuttleInfo.loop}}
+      </p>
     </div>
 
     <!-- Stop DDL -->
@@ -32,7 +36,7 @@
 
     <!-- Time input -->
     <div class="form-group">
-      <label for="timeinput">Bus ID</label>
+      <label for="timeinput">Time</label>
       <input class="form-control" id="timeinput" aria-describedby="emailHelp"
              name="time"
              [ngModel]="logLine.time | date: 'short'"
@@ -82,7 +86,7 @@
     </div>
 
     <!-- BTN Login -->
-    <div class="form-group mt-5">
+    <div class="form-group mt-2">
       <button type="button" class="btn btn-success w-100"
               (click)="onClickEnter()">
         ENTER
