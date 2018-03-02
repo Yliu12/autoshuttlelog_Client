@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {ApplicationRef, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 import {HttpClientModule} from '@angular/common/http';
@@ -16,11 +16,16 @@ import {ShuttleinfoComponent} from './driver/shuttleinfo/shuttleinfo.component';
 
 
 import {AppGlobals} from './driver/service/app.global';
-import { DriverComponent } from './driver/driver.component';
+import {DriverComponent} from './driver/driver.component';
+import {ManagerComponent} from './manager/manager.component';
 
 
 const appRoutes: Routes = [
-  {path: '', component: AppComponent}
+  {path: '', component: AppComponent},
+  {path: 'driver', component: DriverComponent},
+  {path: 'manager', component: ManagerComponent}
+
+
   // {path: 'manager', component: }
 
 ];
@@ -32,7 +37,8 @@ const appRoutes: Routes = [
     LoginComponent,
     LogentryComponent,
     ShuttleinfoComponent,
-    DriverComponent
+    DriverComponent,
+    ManagerComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +51,7 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
 
 }
 
