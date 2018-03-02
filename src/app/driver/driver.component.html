@@ -1,0 +1,11 @@
+<app-navbar (pageSelected)="onNavigate($event)" [onselectPge]="loadedPage"></app-navbar>
+
+<app-login *ngIf="loadedPage == 'logIn'" [shuttleInfo]=" properties.shuttle"
+           (pageSelected)="onNavigate($event)">
+</app-login>
+
+<app-logentry *ngIf="loadedPage == 'logEntry'" [shuttleInfo]="properties.shuttle" (pageSelected)="onNavigate($event)">
+</app-logentry>
+
+<app-shuttleinfo *ngIf="loadedPage == 'editShuttle'" [shuttleInfo]="properties.shuttle"
+                 (pageSelected)="onNavigate($event)"></app-shuttleinfo>

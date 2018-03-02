@@ -34,7 +34,6 @@ export class LogentryComponent implements OnInit {
     setInterval(() => {
       this.logLine.time = Date.now();
     }, 1000);
-
     this.logs = this.logService.getLogs();
 
 

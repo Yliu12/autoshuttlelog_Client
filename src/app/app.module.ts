@@ -2,18 +2,28 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
+import {HttpClientModule} from '@angular/common/http';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {RouterModule, Routes} from '@angular/router';
+
 
 import {AppComponent} from './app.component';
-import {NavbarComponent} from './navbar/navbar.component';
-import {LoginComponent} from './login/login.component';
-import {ServiceWorkerModule} from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { LogentryComponent } from './logentry/logentry.component';
-import { ShuttleinfoComponent } from './shuttleinfo/shuttleinfo.component';
+import {NavbarComponent} from './driver/navbar/navbar.component';
+import {LoginComponent} from './driver/login/login.component';
+import {environment} from '../environments/environment';
+import {LogentryComponent} from './driver/logentry/logentry.component';
+import {ShuttleinfoComponent} from './driver/shuttleinfo/shuttleinfo.component';
 
-import {HttpClientModule} from '@angular/common/http';
 
-import {AppGlobals} from './service/app.global';
+import {AppGlobals} from './driver/service/app.global';
+import { DriverComponent } from './driver/driver.component';
+
+
+const appRoutes: Routes = [
+  {path: '', component: AppComponent}
+  // {path: 'manager', component: }
+
+];
 
 @NgModule({
   declarations: [
@@ -21,13 +31,15 @@ import {AppGlobals} from './service/app.global';
     NavbarComponent,
     LoginComponent,
     LogentryComponent,
-    ShuttleinfoComponent
+    ShuttleinfoComponent,
+    DriverComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [AppGlobals],
   bootstrap: [AppComponent]
