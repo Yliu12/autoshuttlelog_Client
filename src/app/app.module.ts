@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {ApplicationRef, NgModule} from '@angular/core';
+import { NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 import {HttpClientModule} from '@angular/common/http';
@@ -13,7 +13,6 @@ import {LoginComponent} from './driver/login/login.component';
 import {environment} from '../environments/environment';
 import {LogentryComponent} from './driver/logentry/logentry.component';
 import {ShuttleinfoComponent} from './driver/shuttleinfo/shuttleinfo.component';
-
 
 import {AppGlobals} from './driver/service/app.global';
 import {DriverComponent} from './driver/driver.component';
