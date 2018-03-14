@@ -46,7 +46,13 @@ export class UserService {
     return this.http.post(this.serivceUrl, {
       userName: user.userName,
       password: Md5.hashStr(user.password)
-    }, this.httpOptions);
+    }, this.httpOptions)
+      .retryWhen((error) => {
+        console.log('retrying');
+        return error.delay(1000);
+      })
+      // .timeoutWith(7000, Observable.throw(new Error('delay exceeded'))) // <------
+      ;
   }
 
   login(u: User, callback) {
@@ -56,6 +62,9 @@ export class UserService {
           this.user.next(data['respBody']);
         }
         callback(data);
+      },
+      err => {
+        console.error('Oops:', err.message);
       }
     );
   }

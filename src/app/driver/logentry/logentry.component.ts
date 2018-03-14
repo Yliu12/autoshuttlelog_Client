@@ -34,6 +34,11 @@ export class LogentryComponent implements OnInit {
     setInterval(() => {
       this.logLine.time = Date.now();
     }, 1000);
+
+    setInterval(() => {
+      this.logService.sendLogs();
+    }, 6 * 1000);
+
     this.logs = this.logService.getLogs();
 
 
@@ -80,7 +85,7 @@ export class LogentryComponent implements OnInit {
     this.logLine.stop = this.shuttleInfo.stop;
 
     // TODO move to timer in app.component
-    this.logService.sendLogs();
+    //this.logService.sendLogs();
   }
 
   disableSuccessCover() {
@@ -95,7 +100,7 @@ export class LogentryComponent implements OnInit {
           return;
         }
         this.userinfo = Object.assign({}, user);
-        console.log("111111" + this.userinfo);
+        console.log('111111' + this.userinfo);
       });
   }
 

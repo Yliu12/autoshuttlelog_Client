@@ -23,5 +23,17 @@
         "/assets/**"
       ]
     }
-  }]
+  }],
+  "dataGroups": [
+    {
+      "name": "login",
+      "urls": ["!/shuttlelog/login"],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize": 100,
+        "maxAge": "100d",
+        "timeout": "5s"
+      }
+    }
+  ]
 }

@@ -11,7 +11,7 @@
           'login':userinfo.userName}}<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item" [ngClass]="{active:onselectPge == 'editShuttle'}">
-        <a class="nav-link" (click)="onSelect('editShuttle')" href="#editShuttleInfo">Edit Shuttle Info</a>
+        <a class="nav-link" (click)="onSelect('editShuttle')">Edit Shuttle Info</a>
       </li>
       <li class="nav-item" *ngIf="userinfo != null" [ngClass]="{active:onselectPge == 'logEntry'}">
         <a class="nav-link " (click)="onSelect('logEntry')">Log Entry</a>
@@ -33,9 +33,3 @@
   <div class="nav navbar-brand navbar-toggler-right">BSU SHUTTLE LOG</div>
 </nav>
 
-<script>
-  $('.navbar-nav>li>a').on('click', function () {
-    debugger;
-    $('.navbar-collapse').collapse('hide');
-  });
-</script>

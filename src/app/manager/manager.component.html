@@ -45,7 +45,7 @@
             [ngClass]="{'table-success':log.loopName == 'Green Loop',
                         'table-danger':log.loopName == 'Red Loop',
                         'table-info':log.loopName == 'Blue Loop'}">
-          <td scope="row">{{log.time}}</td>
+          <td scope="row">{{log.time | date: 'medium'}}</td>
           <td>{{log.loopName}}</td>
           <td>{{log.busId}}</td>
           <td>{{log.stop}}</td>
@@ -54,7 +54,7 @@
         </tr>
         </tbody>
       </table>
-      
+
     </div>
   </main>
 </div>

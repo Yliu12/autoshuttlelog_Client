@@ -17,7 +17,7 @@ import {ShuttleinfoComponent} from './driver/shuttleinfo/shuttleinfo.component';
 import {AppGlobals} from './driver/service/app.global';
 import {DriverComponent} from './driver/driver.component';
 import {ManagerComponent} from './manager/manager.component';
-
+import './rxjs-operators';
 
 const appRoutes: Routes = [
   {path: '', component: AppComponent},

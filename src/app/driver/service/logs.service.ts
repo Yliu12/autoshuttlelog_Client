@@ -29,6 +29,7 @@ export class LogService {
         'Content-Type': 'application/json'
       })
     };
+
   }
 
   getLogsObservable(): Observable<Log[]> {
@@ -46,10 +47,15 @@ export class LogService {
   private postLogs() {
     console.log(this.logs);
     console.log(this.httpOptions);
-    return this.http.post(this.serivceUrl, this.logs, this.httpOptions);
+    return this.http.post(this.serivceUrl,
+      {'user': {}, 'logList': this.logs}
+      , this.httpOptions).timeout(5000);
   }
 
   sendLogs() {
+    if (this.logs.length === 0) {
+      return;
+    }
     this.postLogs().subscribe(
       data => {
         this.logs = [];
