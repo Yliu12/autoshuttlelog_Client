@@ -67,22 +67,24 @@ export class LoginComponent implements OnInit {
     this.shuttleInfo.position = this.login.position;
 
     // ONLINE VERSION CODE
-    // const loginResult = this.userService.login(this.userinfo, (data) => {
-    //   console.log(data);
-    //
-    //   if (!data) {
-    //     this.displayErrorMessage = 'unknow error occured';
-    //   }
-    //   if (data['error']) {
-    //     const e = data['error'];
-    //     this.displayErrorMessage = e.msgDes;
-    //   }
-    //   if (data['respBody']) {
-    //     this.pageSelected.emit('logEntry');
-    //   }
-    // });
-    this.userService.setUser(this.userinfo);
-    this.pageSelected.emit('logEntry');
+    const loginResult = this.userService.login(this.userinfo, (data) => {
+      console.log(data);
+
+      if (!data) {
+        this.displayErrorMessage = 'unknow error occured';
+      }
+      if (data['error']) {
+        const e = data['error'];
+        this.displayErrorMessage = e.msgDes;
+      }
+      if (data['respBody']) {
+        this.pageSelected.emit('logEntry');
+      }
+    });
+
+    // OFFLINE CODE
+    // this.userService.setUser(this.userinfo);
+    // this.pageSelected.emit('logEntry');
   }
 
   formIsValid() {
