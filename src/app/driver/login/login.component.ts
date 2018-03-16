@@ -50,8 +50,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.getUser();
     this.login.loop = this.shuttleInfo.loop;
     this.login.stop = this.shuttleInfo.stop;
+    // this.userService.readUserFromStorage();
   }
 
   onClickLogin() {
@@ -63,7 +65,7 @@ export class LoginComponent implements OnInit {
     this.userinfo.userName = this.login.username;
     this.userinfo.password = this.login.password;
     this.shuttleInfo.loop = this.login.loop;
-    this.shuttleInfo.this = this.login.stop;
+    this.shuttleInfo.stop = this.login.stop;
     this.shuttleInfo.position = this.login.position;
 
     // ONLINE VERSION CODE
@@ -81,6 +83,10 @@ export class LoginComponent implements OnInit {
         this.pageSelected.emit('logEntry');
       }
     });
+
+    // save shuttle info
+    localStorage.setItem('SHUTTLEINFO', JSON.stringify(this.shuttleInfo));
+
 
     // OFFLINE CODE
     // this.userService.setUser(this.userinfo);
@@ -121,4 +127,16 @@ export class LoginComponent implements OnInit {
     this.login.stop = stop;
     console.log(stop);
   }
+
+  // getUser(): void {
+  //   this.userService.getUserObservable()
+  //     .subscribe(user => {
+  //       if (user && user.userName) {
+  //         this.onNavigate('logEntry');
+  //         console.log('Recieve User' + JSON.stringify(user, null, 2));
+  //         return;
+  //       }
+  //     });
+  // }
+
 }

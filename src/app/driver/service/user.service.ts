@@ -2,15 +2,11 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {Observable} from 'rxjs/Observable';
-import {of} from 'rxjs/observable/of';
-import {Subject} from 'rxjs/Subject';
-
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Md5} from 'ts-md5/dist/md5';
 
 import {AppGlobals} from './app.global';
 import {User} from './user';
-import {Md5} from 'ts-md5/dist/md5';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-
 
 @Injectable()
 export class UserService {
@@ -24,12 +20,26 @@ export class UserService {
 
 
   constructor(private http: HttpClient, private _global: AppGlobals) {
+
     this.serivceUrl = this._global.baseAPIUrl + this.loginUrl;
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
+  }
+
+  readUserFromStorage() {
+    const userStr = localStorage.getItem('USER');
+    if (userStr) {
+      const user = JSON.parse(userStr);
+      this.user.next(user);
+    }
+  }
+
+  saveUserToStorage(user: User) {
+    localStorage.setItem('USER', JSON.stringify(user));
+    console.log(JSON.stringify(user));
   }
 
   getUserObservable(): Observable<User> {
@@ -39,6 +49,7 @@ export class UserService {
 
   setUser(user: User) {
     this.user.next(user);
+    this.saveUserToStorage(user);
   }
 
   private requestLogin(user: User) {
@@ -59,7 +70,7 @@ export class UserService {
     this.requestLogin(u).subscribe(
       data => {
         if (data['respBody']) {
-          this.user.next(data['respBody']);
+          this.setUser((data['respBody']));
         }
         callback(data);
       },
@@ -72,6 +83,7 @@ export class UserService {
 
   logOut() {
     this.user.next(null);
+    localStorage.removeItem('USER');
   }
 
 

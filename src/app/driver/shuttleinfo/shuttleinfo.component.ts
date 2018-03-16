@@ -29,12 +29,15 @@ export class ShuttleinfoComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     this.formBus.id = this.shuttleInfo.id;
     this.formBus.loop = this.shuttleInfo.loop;
 
   }
 
   onClickUpdate() {
+    localStorage.setItem('SHUTTLEINFO', JSON.stringify(this.shuttleInfo));
     this.shuttleInfo.id = this.formBus.id;
     this.shuttleInfo.loop = this.formBus.loop;
     this.pageSelected.emit('logEntry');

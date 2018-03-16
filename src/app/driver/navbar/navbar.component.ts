@@ -31,6 +31,9 @@ export class NavbarComponent implements OnInit {
     this.pageSelected.emit(page);
   }
 
+  /**
+   * return to login page after logout
+   */
   getUser(): void {
     this.userService.getUserObservable()
       .subscribe(user => {

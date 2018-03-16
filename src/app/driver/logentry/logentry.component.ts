@@ -84,8 +84,10 @@ export class LogentryComponent implements OnInit {
     this.shuttleInfo.stop = this.gLoopStops[nextStopIndex];
     this.logLine.stop = this.shuttleInfo.stop;
 
-    // TODO move to timer in app.component
-    //this.logService.sendLogs();
+
+    //update shuttle info
+    localStorage.setItem('SHUTTLEINFO', JSON.stringify(this.shuttleInfo));
+
   }
 
   disableSuccessCover() {
