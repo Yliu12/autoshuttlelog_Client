@@ -16,19 +16,16 @@ export class LogService {
 
   // Observable string sources
   private logs: Log[] = [];
+
+  private token: string;
   private serivceUrl = '';
 
-  private httpOptions = {};
 
   // Observable string streams
 
   constructor(private http: HttpClient, private _global: AppGlobals) {
     this.serivceUrl = this._global.baseAPIUrl + this.logsUrl;
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
+
 
   }
 
@@ -40,16 +37,30 @@ export class LogService {
     return this.logs.slice();
   }
 
+  setToken(token: string) {
+    this.token = token;
+  }
+
   addLog(log) {
     this.logs.push(log);
   }
 
   private postLogs() {
+
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': this.token
+      })
+    };
+
+
     console.log(this.logs);
-    console.log(this.httpOptions);
+    //console.log(this.httpOptions);
     return this.http.post(this.serivceUrl,
-      {'user': {}, 'logList': this.logs}
-      , this.httpOptions).timeout(5000);
+      {'logList': this.logs}
+      , httpOptions).timeout(5000);
   }
 
   sendLogs() {

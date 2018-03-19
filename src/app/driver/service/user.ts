@@ -8,6 +8,7 @@ export class User {
   userName: string;
   role: string;
   statusCode: string;
+  token: string;
 
   constructor() {
   }

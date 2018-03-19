@@ -33,6 +33,7 @@ export class UserService {
     const userStr = localStorage.getItem('USER');
     if (userStr) {
       const user = JSON.parse(userStr);
+
       this.user.next(user);
     }
   }

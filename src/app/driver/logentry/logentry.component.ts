@@ -85,7 +85,7 @@ export class LogentryComponent implements OnInit {
     this.logLine.stop = this.shuttleInfo.stop;
 
 
-    //update shuttle info
+    // update shuttle info
     localStorage.setItem('SHUTTLEINFO', JSON.stringify(this.shuttleInfo));
 
   }
@@ -102,7 +102,8 @@ export class LogentryComponent implements OnInit {
           return;
         }
         this.userinfo = Object.assign({}, user);
-        console.log('111111' + this.userinfo);
+        this.logService.setToken(this.userinfo.token);
+        console.log('user Updated');
       });
   }
 
