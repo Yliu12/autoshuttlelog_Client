@@ -14,7 +14,8 @@
  [Install Node.js](https://nodejs.org/)
 
 
-clone code to local,
+clone code
+
 Install Angular CLI
 ```
 npm install -g @angular/cli
