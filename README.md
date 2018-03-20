@@ -11,16 +11,30 @@
 
 
 ## Deploy Instruction
+ [Install Node.js](https://nodejs.org/)
+
 
 clone code to local,
+Install Angular CLI
+```
+npm install -g @angular/cli
+```
 
-run commond
-
+Go to folder
+```
+cd autoshuttlelog_Client\
+```
+Install packages
+```
 npm i
+```
 
-use 
-ng serve 
-for development 
+
+Run Preview
+```
+ng serve
+```
+
 
 go to browser and open 
 
