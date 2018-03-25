@@ -78,6 +78,7 @@ export class LoginComponent implements OnInit {
       if (data['error']) {
         const e = data['error'];
         this.displayErrorMessage = e.msgDes;
+        return;
       }
       if (data['respBody']) {
         this.pageSelected.emit('logEntry');

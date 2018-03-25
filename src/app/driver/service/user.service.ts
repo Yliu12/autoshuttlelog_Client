@@ -12,7 +12,7 @@ import {User} from './user';
 export class UserService {
   private user = new BehaviorSubject<User>(new User());
 
-  private loginUrl = '/login';
+  private loginUrl = '/driverlogin';
 
   private serivceUrl = '';
 
@@ -74,7 +74,8 @@ export class UserService {
           this.setUser((data['respBody']));
         }
         callback(data);
-      },
+      }
+      ,
       err => {
         console.error('Oops:', err.message);
       }
