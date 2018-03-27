@@ -1,0 +1,37 @@
+<!-- Loop DDL -->
+<!--
+TODO edit text color
+TODO extract to component
+-->
+<div class="form-group" *ngIf="loopDisplay">
+  <label for="LoopSelect">Loop</label>
+  <div id="LoopSelect" class="dropdown show">
+    <a class="btn btn-light  w-100 text-left" href="#" role="button" id="dropdownLoop" data-toggle="dropdown"
+       aria-haspopup="true" aria-expanded="false"
+    >
+      <span class="">{{shuttleInfo.loop}}</span><span class="dropdown-toggle float-right"></span>
+    </a>
+
+    <div class="dropdown-menu w-100" aria-labelledby="dropdownLoop">
+      <a class="dropdown-item" *ngFor="let loop of loopValues" (click)=onClickLoopOption(loop)>
+        {{loop.loopName}} </a>
+    </div>
+  </div>
+</div>
+
+<!-- Stop DDL -->
+<div class="form-group" *ngIf="stopDisplay">
+  <label for="stopSelect">Stop</label>
+  <div id="stopSelect" class="dropdown show ">
+    <a class="btn btn-light  w-100 text-left" href="#" role="button" id="dropdownStop" data-toggle="dropdown"
+       aria-haspopup="true" aria-expanded="false">
+
+      <span class="">{{shuttleInfo.stop}}</span><span class="dropdown-toggle float-right"></span>
+    </a>
+
+    <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuLink">
+      <a class="dropdown-item" *ngFor="let stop of stops" (click)=onClickStopOption(stop)>
+        {{stop}} </a>
+    </div>
+  </div>
+</div>

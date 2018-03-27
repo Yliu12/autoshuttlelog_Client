@@ -18,12 +18,7 @@ export class ShuttleinfoComponent implements OnInit {
     loop: '',
     stop: ''
   };
-  loopDdlValues = [
-    {key: 'G', val: 'Green Loop'},
-    {key: 'R', val: 'Red Loop'},
-    {key: 'S', val: 'Sunday Loop'},
-    {key: 'B', val: 'Blue Loop'}
-  ];
+
 
   constructor() {
   }

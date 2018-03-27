@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {LogService} from './service/logs.service';
 import {UserService} from './service/user.service';
+import {LoopService} from './service/loop.service';
+
 
 @Component({
   selector: 'app-driver',
   templateUrl: './driver.component.html',
   styleUrls: ['./driver.component.css'],
-  providers: [LogService, UserService]
+  providers: [LogService, UserService, LoopService]
 })
 export class DriverComponent implements OnInit {
 
@@ -14,8 +16,8 @@ export class DriverComponent implements OnInit {
   title = 'app';
   shuttle = {
     id: '',
-    loop: 'Green Loop',
-    stop: 'Shiedler',
+    loop: '',
+    stop: '',
     position: ''
   };
 
@@ -23,14 +25,22 @@ export class DriverComponent implements OnInit {
     shuttle: this.shuttle
   };
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private loopService: LoopService) {
 
   }
 
   ngOnInit() {
     this.getUser();
     this.userService.readUserFromStorage();
+
+    this.loopService.getLoopInfo((loops) => {
+      this.shuttle.loop = loops[0].loopName;
+
+      this.shuttle.stop = loops[0].stops[0];
+    });
+
     this.shuttle = JSON.parse(localStorage.getItem('SHUTTLEINFO'));
+
     this.retoreDataFromStorage();
 
   }
@@ -58,5 +68,15 @@ export class DriverComponent implements OnInit {
           return;
         }
       });
+  }
+
+  getLoopData() {
+    this.loopService.getLoopObservable().subscribe(
+      (loops) => {
+        this.shuttle.loop = loops[0].loopName;
+
+        this.shuttle.stop = loops[0].stops[0];
+      }
+    );
   }
 }

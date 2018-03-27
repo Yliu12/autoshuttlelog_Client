@@ -34,46 +34,12 @@
     <small id="positonalert" *ngIf="!formValidation.position" class="form-text text-danger"> Position is empty
     </small>
 
+    <!-- Loop & Stop -->
+
+    <app-loop-stop [shuttleInfo]='shuttleInfo' [loopDisplay]='true' [stopDisplay]='true'>
+
+    </app-loop-stop>
   </div>
-
-  <!-- Loop DDL -->
-  <!--
-  TODO edit text color
-  TODO extract to component
-  -->
-  <div class="form-group">
-    <label for="LoopSelect">Loop</label>
-    <div id="LoopSelect" class="dropdown show">
-      <a class="btn btn-light  w-100 text-left" href="#" role="button" id="dropdownLoop" data-toggle="dropdown"
-         aria-haspopup="true" aria-expanded="false"
-      >
-        <span class="">{{login.loop}}</span><span class="dropdown-toggle float-right"></span>
-      </a>
-
-      <div class="dropdown-menu w-100" aria-labelledby="dropdownLoop">
-        <a class="dropdown-item" *ngFor="let pair of loopDdlValues" (click)=onClickLoopOption(pair.val)>
-          {{pair.val}} </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Stop DDL -->
-  <div class="form-group">
-    <label for="stopSelect">Stop</label>
-    <div id="stopSelect" class="dropdown show ">
-      <a class="btn btn-light  w-100 text-left" href="#" role="button" id="dropdownStop" data-toggle="dropdown"
-         aria-haspopup="true" aria-expanded="false">
-
-        <span class="">{{login.stop}}</span><span class="dropdown-toggle float-right"></span>
-      </a>
-
-      <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" *ngFor="let stop of gLoopStops" (click)=onClickStopOption(stop)>
-          {{stop}} </a>
-      </div>
-    </div>
-  </div>
-
 
 
   <!-- INPUT BUS ID -->

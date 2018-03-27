@@ -18,6 +18,7 @@ import {AppGlobals} from './driver/service/app.global';
 import {DriverComponent} from './driver/driver.component';
 import {ManagerComponent} from './manager/manager.component';
 import './rxjs-operators';
+import { LoopStopComponent } from './driver/shuttleinfo/loop-stop/loop-stop.component';
 
 const appRoutes: Routes = [
   {path: '', component: AppComponent},
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     LogentryComponent,
     ShuttleinfoComponent,
     DriverComponent,
-    ManagerComponent
+    ManagerComponent,
+    LoopStopComponent
   ],
   imports: [
     BrowserModule,

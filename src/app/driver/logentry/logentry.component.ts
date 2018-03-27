@@ -1,9 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {DatePipe} from '@angular/common';
 import {LogService} from '../service/logs.service';
 import {Log} from '../service/log';
 import {User} from '../service/user';
 import {UserService} from '../service/user.service';
+import {LoopStopComponent} from "../shuttleinfo/loop-stop/loop-stop.component";
 
 @Component({
   selector: 'app-logentry',
@@ -15,18 +16,13 @@ export class LogentryComponent implements OnInit {
 
   @Output() pageSelected = new EventEmitter<string>();
   @Input() shuttleInfo;
-
+  @ViewChild(LoopStopComponent) stopLoop: LoopStopComponent;
 
   showSuccessCover: boolean;
-  gLoopStops = [
-    'Notrh Shelter - N',
-    'Anthony - N',
-    'Alumni',
-    'Stadium',
-    'Scheidler'];
+
   logLine = new Log();
   logs: Log[] = [];
-
+  toNextStation: Function;
 
   userinfo: User = new User();
 
@@ -59,11 +55,10 @@ export class LogentryComponent implements OnInit {
     this.showSuccessCover = false;
     this.logLine = new Log();
     this.logLine.time = Date.now();
-    this.logLine.stop = this.shuttleInfo.stop;
   }
 
   onClickStopOption(stop) {
-    this.logLine.stop = stop;
+    this.shuttleInfo.stop = stop;
     console.log(stop);
   }
 
@@ -72,21 +67,20 @@ export class LogentryComponent implements OnInit {
     setTimeout(() => {
       this.disableSuccessCover();
     }, 2000);
+
+    // assembly logline
     this.logLine.driver = this.userinfo.userName;
     this.logLine.busId = this.shuttleInfo.id;
     this.logLine.position = this.shuttleInfo.position;
     this.logLine.loopName = this.shuttleInfo.loop;
     this.logLine.stop = this.shuttleInfo.stop;
     this.logService.addLog(this.logLine);
-    const numberofStop = this.gLoopStops.indexOf(this.logLine.stop);
+
+    this.stopLoop.goToNextStop();
     this.logLine = new Log();
-    const nextStopIndex = (numberofStop === this.gLoopStops.length - 1 ? this.gLoopStops[0] : numberofStop + 1).toString();
-    this.shuttleInfo.stop = this.gLoopStops[nextStopIndex];
-    this.logLine.stop = this.shuttleInfo.stop;
 
 
     // update shuttle info
-    localStorage.setItem('SHUTTLEINFO', JSON.stringify(this.shuttleInfo));
 
   }
 

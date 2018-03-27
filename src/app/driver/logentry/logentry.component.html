@@ -12,30 +12,19 @@
       <p class="font-weight-bold col-8">
         BUS {{shuttleInfo.id === ""? 'Please Enter BUS ID':shuttleInfo.id}}
       </p>
-      <p  class=" font-weight-bold text-right col-4">
+      <p class=" font-weight-bold text-right col-4">
         {{shuttleInfo.loop}}
       </p>
     </div>
 
-    <!-- Stop DDL -->
-    <div class="form-group">
-      <label for="stopSelect">Stop</label>
-      <div id="stopSelect" class="dropdown show ">
-        <a class="btn btn-light  w-100 text-left" href="#" role="button" id="dropdownStop" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">
+    <!-- Stop -->
+    <app-loop-stop [shuttleInfo]='shuttleInfo' [loopDisplay]='false' [stopDisplay]='true'>
 
-          <span class="">{{logLine.stop}}</span><span class="dropdown-toggle float-right"></span>
-        </a>
-
-        <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" *ngFor="let stop of gLoopStops" (click)=onClickStopOption(stop)>
-            {{stop}} </a>
-        </div>
-      </div>
-    </div>
+    </app-loop-stop>
 
     <!-- Time input -->
-    <div class="form-group">
+    <div class=" form-group
+    ">
       <label for="timeinput">Time</label>
       <input class="form-control" id="timeinput" aria-describedby="emailHelp"
              name="time"

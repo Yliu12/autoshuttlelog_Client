@@ -51,8 +51,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     // this.getUser();
-    this.login.loop = this.shuttleInfo.loop;
-    this.login.stop = this.shuttleInfo.stop;
     // this.userService.readUserFromStorage();
   }
 
@@ -64,8 +62,6 @@ export class LoginComponent implements OnInit {
     }
     this.userinfo.userName = this.login.username;
     this.userinfo.password = this.login.password;
-    this.shuttleInfo.loop = this.login.loop;
-    this.shuttleInfo.stop = this.login.stop;
     this.shuttleInfo.position = this.login.position;
 
     // ONLINE VERSION CODE
