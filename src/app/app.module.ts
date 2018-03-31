@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import { NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 import {HttpClientModule} from '@angular/common/http';
@@ -18,7 +18,7 @@ import {AppGlobals} from './driver/service/app.global';
 import {DriverComponent} from './driver/driver.component';
 import {ManagerComponent} from './manager/manager.component';
 import './rxjs-operators';
-import { LoopStopComponent } from './driver/shuttleinfo/loop-stop/loop-stop.component';
+import {LoopStopComponent} from './driver/shuttleinfo/loop-stop/loop-stop.component';
 
 const appRoutes: Routes = [
   {path: '', component: AppComponent},
@@ -46,7 +46,7 @@ const appRoutes: Routes = [
     FormsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [AppGlobals],
   bootstrap: [AppComponent]

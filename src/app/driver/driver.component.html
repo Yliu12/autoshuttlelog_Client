@@ -1,3 +1,5 @@
+<a name="driver"></a>
+
 <app-navbar (pageSelected)="onNavigate($event)" [onselectPge]="loadedPage"></app-navbar>
 
 <app-login *ngIf="loadedPage == 'logIn'" [shuttleInfo]=" properties.shuttle"
