@@ -44,7 +44,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
+    ServiceWorkerModule.register('./ngsw-worker.js', {enabled: environment.production}),
     HttpClientModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
