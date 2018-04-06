@@ -27,7 +27,7 @@
   "dataGroups": [
     {
       "name": "login",
-      "urls": ["!/shuttlelog/login"],
+      "urls": [" http://localhost:8080/shuttlelog/loops","!/shuttlelog/login","#/driver"],
       "cacheConfig": {
         "strategy": "freshness",
         "maxSize": 100,
