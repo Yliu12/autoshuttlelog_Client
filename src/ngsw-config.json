@@ -27,7 +27,7 @@
   "dataGroups": [
     {
       "name": "login",
-      "urls": [" http://localhost:8080/shuttlelog/loops","!/shuttlelog/login","#/driver"],
+     "urls": ["https://tbuslog01.aws.bsu.edu:8443/shuttlelog/loops","!/shuttlelog/login"],
       "cacheConfig": {
         "strategy": "freshness",
         "maxSize": 100,
