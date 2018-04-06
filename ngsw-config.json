@@ -14,15 +14,26 @@
         "/*.chunk.js"
       ]
     }
-  },
+  }, {
+    "name": "assets",
+    "installMode": "lazy",
+    "updateMode": "prefetch",
+    "resources": {
+      "files": [
+        "/assets/**"
+      ]
+    }
+  }],
+  "dataGroups": [
     {
-      "name": "assets",
-      "installMode": "lazy",
-      "updateMode": "prefetch",
-      "resources": {
-        "files": [
-          "/assets/**"
-        ]
+      "name": "login",
+      "urls": ["https://tbuslog01.aws.bsu.edu:8443/shuttlelog/loops","!/shuttlelog/login"],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize": 100,
+        "maxAge": "100d",
+        "timeout": "5s"
       }
-    }]
+    }
+  ]
 }
