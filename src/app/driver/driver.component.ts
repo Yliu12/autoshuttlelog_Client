@@ -15,7 +15,7 @@ export class DriverComponent implements OnInit {
   loadedPage = 'logIn';
   title = 'app';
   shuttle = {
-    id: 'test',
+    id: '',
     loop: '',
     stop: '',
     position: ''
