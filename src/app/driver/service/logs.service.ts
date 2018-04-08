@@ -35,6 +35,7 @@ export class LogService {
 
   readLogfronStorage() {
     const logStr = localStorage.getItem('LOGS');
+
     if (logStr) {
       const logs = JSON.parse(logStr);
 
@@ -86,6 +87,7 @@ export class LogService {
     this.postLogs().subscribe(
       data => {
         this.logs = [];
+        localStorage.removeItem('LOGS');
       }
     );
   }
