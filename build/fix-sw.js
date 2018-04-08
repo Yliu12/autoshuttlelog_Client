@@ -12,10 +12,7 @@
 * enter the value set as the --base-href flag when deploying to a live URL
 * if not deploying to a live URL, and only running locally, set this to null, as the URL parsing fix will not be necessary
 */
-const SITE_BASE_HREF = 'https://your-url.com/';
-
-
-
+const SITE_BASE_HREF = null;
 
 
 /*
@@ -48,10 +45,11 @@ const serviceWorkerURLFix = {
 }
 
 try {
+  console.log("112123132")
   const existingInstances = replace.sync(existingStateReplacements);
   console.log('Replacements of EXISTING_CLIENTS_ONLY states: ', existingInstances.join(', '));
 }
-catch(error) {
+catch (error) {
   console.error('Error occurred while replacing EXISTING_CLIENTS_ONLY states: ', error);
 }
 

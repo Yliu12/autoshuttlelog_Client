@@ -24,11 +24,8 @@ export class ShuttleinfoComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
     this.formBus.id = this.shuttleInfo.id;
     this.formBus.loop = this.shuttleInfo.loop;
-
   }
 
   onClickUpdate() {

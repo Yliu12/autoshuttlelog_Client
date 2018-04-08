@@ -33,6 +33,21 @@ export class LogService {
     return of(this.logs);
   }
 
+  readLogfronStorage() {
+    const logStr = localStorage.getItem('LOGS');
+    if (logStr) {
+      const logs = JSON.parse(logStr);
+
+      this.logs = logs;
+    }
+  }
+
+  saveLogsToStorage() {
+    localStorage.setItem('LOGS', JSON.stringify(this.logs));
+    console.log('Save LOGS' + JSON.stringify(this.logs));
+  }
+
+
   getLogs(): Log[] {
     return this.logs.slice();
   }
@@ -43,6 +58,7 @@ export class LogService {
 
   addLog(log) {
     this.logs.push(log);
+    this.saveLogsToStorage();
   }
 
   private postLogs() {
@@ -57,7 +73,7 @@ export class LogService {
 
 
     console.log(this.logs);
-    //console.log(this.httpOptions);
+    // console.log(this.httpOptions);
     return this.http.post(this.serivceUrl,
       {'logList': this.logs}
       , httpOptions).timeout(5000);

@@ -26,6 +26,7 @@ export class LogentryComponent implements OnInit {
 
   userinfo: User = new User();
 
+
   constructor(private logService: LogService, private userService: UserService) {
     setInterval(() => {
       this.logLine.time = Date.now();
@@ -55,6 +56,10 @@ export class LogentryComponent implements OnInit {
     this.showSuccessCover = false;
     this.logLine = new Log();
     this.logLine.time = Date.now();
+
+
+    // check saved logs
+    this.logService.readLogfronStorage();
   }
 
   onClickStopOption(stop) {

@@ -16,7 +16,7 @@
     }
   }, {
     "name": "assets",
-    "installMode": "lazy",
+    "installMode": "prefetch",
     "updateMode": "prefetch",
     "resources": {
       "files": [
@@ -27,12 +27,12 @@
   "dataGroups": [
     {
       "name": "login",
-      "urls": [" http://localhost:8080/shuttlelog/loops","!/shuttlelog/login","#/driver"],
+      "urls": ["*/shuttlelog/loops*","/shuttlelog/loops"],
       "cacheConfig": {
         "strategy": "freshness",
-        "maxSize": 100,
-        "maxAge": "100d",
-        "timeout": "5s"
+        "maxSize": 10,
+        "maxAge": "3d",
+        "timeout": "3s"
       }
     }
   ]

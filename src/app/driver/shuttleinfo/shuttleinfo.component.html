@@ -6,7 +6,6 @@
     <input class="form-control" id="busidinput" aria-describedby="emailHelp" placeholder="{{formBus.id}}"
            name="id"
            [(ngModel)]="formBus.id">
-    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
   </div>
   <!-- Loop DDL -->
   <!--
@@ -14,7 +13,7 @@
   TODO extract to component
   -->
 
-  <app-loop-stop [shuttleInfo]='shuttleInfo' [loopDisplay]='true'  [stopDisplay]='true'>
+  <app-loop-stop [shuttleInfo]='shuttleInfo' [loopDisplay]='true' [stopDisplay]='true'>
 
   </app-loop-stop>
 
