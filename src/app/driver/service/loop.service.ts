@@ -3,7 +3,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Md5} from 'ts-md5/dist/md5';
 
 import {AppGlobals} from './app.global';
 import {User} from './user';
@@ -41,6 +40,16 @@ export class LoopService {
     }
   }
 
+  readBusInfoFromStorage() {
+    const busStr = localStorage.getItem('SHUTTLEINFO');
+    if (busStr) {
+      const bus = JSON.parse(busStr);
+      return bus;
+    }
+
+
+  }
+
   saveLoopInfoStorage(loops: Loop[]) {
     localStorage.setItem('LOOPS', JSON.stringify(loops));
     console.log(JSON.stringify(loops));
@@ -63,15 +72,17 @@ export class LoopService {
         console.log('retrying');
         return error.delay(1000);
       })
-      // .timeoutWith(7000, Observable.throw(new Error('delay exceeded'))) // <------
+      .timeoutWith(2000, Observable.throw(new Error('delay exceeded'))) // <------
       ;
   }
 
   getLoopInfo(callback) {
+
     this.requestLoopInfo().subscribe(
       data => {
         const loops = data['respBody'];
         if (loops) {
+
           loops.forEach((value) => {
             value.stops = JSON.parse(value.stops);
           });
@@ -84,6 +95,7 @@ export class LoopService {
       }
       ,
       err => {
+        this.readLoopInfoFromStorage();
         console.error('Oops:', err.message);
       }
     );

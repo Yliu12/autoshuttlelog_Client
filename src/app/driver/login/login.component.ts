@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit {
   formValidation = {
     userName: true,
     password: true,
-    position: true
+    position: true,
+    busID: true
   };
   displayErrorMessage;
 
@@ -50,8 +51,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.getUser();
-    // this.userService.readUserFromStorage();
+
+    // drivers login at office.
+    // this.retoreDataFromStorage();
+
   }
 
   onClickLogin() {
@@ -95,7 +98,8 @@ export class LoginComponent implements OnInit {
     this.formValidation = {
       userName: true,
       password: true,
-      position: true
+      position: true,
+      busID: true
     };
 
     if (this.login.username == null || this.login.username === '') {
@@ -107,8 +111,14 @@ export class LoginComponent implements OnInit {
     if (this.login.position == null || this.login.position === '') {
       this.formValidation.position = false;
     }
+    if (this.login.position == null || this.login.position === '') {
+      this.formValidation.position = false;
+    }
+    if (this.shuttleInfo.id == null || this.shuttleInfo.id === '') {
+      this.formValidation.busID = false;
+    }
 
-    if (this.formValidation.position && this.formValidation.password && this.formValidation.userName) {
+    if (this.formValidation.position && this.formValidation.password && this.formValidation.userName && this.formValidation.busID) {
       return true;
     }
     return false;
@@ -135,5 +145,12 @@ export class LoginComponent implements OnInit {
   //       }
   //     });
   // }
+  retoreDataFromStorage() {
+    const shuttle = JSON.parse(localStorage.getItem('SHUTTLEINFO'));
 
+    if (shuttle && shuttle.loop) {
+      this.shuttleInfo = shuttle;
+    }
+
+  }
 }

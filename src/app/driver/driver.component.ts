@@ -15,7 +15,7 @@ export class DriverComponent implements OnInit {
   loadedPage = 'logIn';
   title = 'app';
   shuttle = {
-    id: '',
+    id: 'test',
     loop: '',
     stop: '',
     position: ''
@@ -39,21 +39,9 @@ export class DriverComponent implements OnInit {
       this.shuttle.stop = loops[0].stops[0];
     });
 
-    this.shuttle = JSON.parse(localStorage.getItem('SHUTTLEINFO'));
-
-    this.retoreDataFromStorage();
 
   }
 
-
-  retoreDataFromStorage() {
-    const shuttle = JSON.parse(localStorage.getItem('SHUTTLEINFO'));
-
-    if (shuttle && shuttle.loop) {
-      this.shuttle = shuttle;
-    }
-
-  }
 
   onNavigate(page: string) {
     this.loadedPage = page;
@@ -74,7 +62,6 @@ export class DriverComponent implements OnInit {
     this.loopService.getLoopObservable().subscribe(
       (loops) => {
         this.shuttle.loop = loops[0].loopName;
-
         this.shuttle.stop = loops[0].stops[0];
       }
     );

@@ -48,7 +48,7 @@
     <input class="form-control" id="busidinput" aria-describedby="emailHelp" placeholder="{{shuttleInfo.id}}"
            name="id"
            [(ngModel)]="shuttleInfo.id">
-    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+    <small id="busidalert" *ngIf="!formValidation.busID" class="form-text text-danger"> BusID is empty</small>
   </div>
 
   <!-- Login Error Message -->
