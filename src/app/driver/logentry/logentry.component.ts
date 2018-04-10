@@ -52,6 +52,7 @@ export class LogentryComponent implements OnInit {
 
 
   ngOnInit() {
+    this.getBusInfo();
     this.getUser();
     this.showSuccessCover = false;
     this.logLine = new Log();
@@ -60,6 +61,13 @@ export class LogentryComponent implements OnInit {
 
     // check saved logs
     this.logService.readLogfronStorage();
+  }
+  getBusInfo() {
+    const busStr = localStorage.getItem('SHUTTLEINFO');
+    if (busStr) {
+      this.shuttleInfo = JSON.parse(busStr);
+    }
+
   }
 
   onClickStopOption(stop) {

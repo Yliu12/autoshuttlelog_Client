@@ -15,13 +15,6 @@ export class LoginComponent implements OnInit {
 
   @Input() shuttleInfo;
   @Output() pageSelected = new EventEmitter<string>();
-
-  loopDdlValues = [
-    {key: 'G', val: 'Green Loop'},
-    {key: 'R', val: 'Red Loop'},
-    {key: 'S', val: 'Sunday Loop'},
-    {key: 'B', val: 'Blue Loop'}
-  ];
   login = {
     username: '',
     password: '',
@@ -118,11 +111,7 @@ export class LoginComponent implements OnInit {
       this.formValidation.busID = false;
     }
 
-    if (this.formValidation.position && this.formValidation.password && this.formValidation.userName && this.formValidation.busID) {
-      return true;
-    }
-    return false;
-
+    return (this.formValidation.position && this.formValidation.password && this.formValidation.userName && this.formValidation.busID);
   }
 
   onClickLoopOption(option) {

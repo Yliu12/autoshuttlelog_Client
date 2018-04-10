@@ -33,12 +33,12 @@ export class DriverComponent implements OnInit {
     this.getUser();
     this.userService.readUserFromStorage();
 
+
     this.loopService.getLoopInfo((loops) => {
       this.shuttle.loop = loops[0].loopName;
 
       this.shuttle.stop = loops[0].stops[0];
     });
-
 
   }
 
@@ -46,6 +46,8 @@ export class DriverComponent implements OnInit {
   onNavigate(page: string) {
     this.loadedPage = page;
   }
+
+
 
   getUser(): void {
     this.userService.getUserObservable()
@@ -59,6 +61,8 @@ export class DriverComponent implements OnInit {
   }
 
   getLoopData() {
+
+    //  Get Loops & Stops
     this.loopService.getLoopObservable().subscribe(
       (loops) => {
         this.shuttle.loop = loops[0].loopName;

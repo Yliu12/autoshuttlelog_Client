@@ -29,11 +29,10 @@ export class ShuttleinfoComponent implements OnInit {
   }
 
   onClickUpdate() {
-    localStorage.setItem('SHUTTLEINFO', JSON.stringify(this.shuttleInfo));
     this.shuttleInfo.id = this.formBus.id;
     this.shuttleInfo.loop = this.formBus.loop;
     this.pageSelected.emit('logEntry');
-
+    localStorage.setItem('SHUTTLEINFO', JSON.stringify(this.shuttleInfo));
   }
 
   onClickLoopOption(option) {
