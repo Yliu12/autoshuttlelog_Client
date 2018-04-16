@@ -1,34 +1,37 @@
 import {Component, OnInit} from '@angular/core';
-import {DataService} from './service/data.service';
-import {Log} from './service/log';
 import {DatePipe} from '@angular/common';
+import {UserService} from './service/user.service';
+import {DataService} from './service/data.service';
 
 
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',
   styleUrls: ['./manager.component.css'],
-  providers: [DataService, DatePipe]
+  providers: [DataService, DatePipe, UserService]
 })
 
 export class ManagerComponent implements OnInit {
 
-
-  logs: Log[];
   JSON;
+  loadedPage = 'dashboard';
 
-  constructor(private dataService: DataService) {
+  constructor() {
 
     this.JSON = JSON;
   }
 
-  ngOnInit() {
-    this.getLogs();
+  onNavigate(page: string) {
+    this.loadedPage = page;
+    console.log('change page' + page);
   }
 
-  getLogs(): void {
-    this.dataService.getLogsObservable().subscribe(data => {
-      this.logs = data;
-    });
+  onNav(page: string) {
+    this.loadedPage = page;
+    console.log('onNav change page ' + page);
+  }
+
+
+  ngOnInit() {
   }
 }

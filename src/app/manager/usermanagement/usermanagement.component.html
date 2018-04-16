@@ -1,0 +1,98 @@
+<a name="usermanagement"></a>
+<div class="container mt-10">
+  <h1>Manage Users</h1>
+  <div id="add User From">
+    <h2>Add Users</h2>
+
+    <form class="mt-1">
+      <div class="row">
+        <!-- Username input -->
+        <div class="form-group col">
+          <label for="usernameinput">Username</label>
+          <input class="form-control" id="usernameinput" aria-describedby="emailHelp" placeholder="Enter Username"
+                 name="Username"
+                 [(ngModel)]="newUser.userName"
+                 [ngClass]="{'is-valid':newUser.userName != ''}"
+          >
+
+          <small id="usernamealert" *ngIf="!formValidation.userName" class="form-text text-danger"> username is empty
+          </small>
+        </div>
+
+        <!-- Password input -->
+        <div class="form-group col">
+          <label for="passwordinput">Password</label>
+          <input type="password" class="form-control" id="passwordinput" placeholder="Password"
+                 [(ngModel)]="newUser.password"
+                 name="Password"
+                 [ngClass]="{'is-valid':newUser.password != ''}"
+          >
+          <small id="passwordalert" *ngIf="!formValidation.password" class="form-text text-danger"> password is empty
+          </small>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- First Name input -->
+        <div class="form-group col">
+          <label for="Positioninput">First Name</label>
+          <input class="form-control" id="Positioninput" [(ngModel)]="newUser.firstName" name="firstName"
+                 [ngClass]="{'is-valid':newUser.firstName != ''}"
+          >
+          <small id="positonalert" *ngIf="!formValidation.firstName" class="form-text text-danger"> firstName is empty
+          </small>
+        </div>
+
+
+        <!-- INPUT Last Name -->
+        <div class="form-group col">
+          <label for="busidinput">Last Name</label>
+          <input class="form-control" id="busidinput" aria-describedby="emailHelp"
+                 name="lastName"
+                 [(ngModel)]="newUser.lastName">
+          <small id="busidalert" *ngIf="!formValidation.lastName" class="form-text text-danger"> BusID is empty</small>
+        </div>
+      </div>
+      <!-- newUser Error Message -->
+      <div class="form-group mb-2">
+        <p class="text-danger text-center" *ngIf="displayErrorMessage">{{displayErrorMessage}}</p>
+      </div>
+
+      <!-- BTN newUser -->
+      <div class="form-group">
+        <button type="button" class="btn btn-success w-100"
+                (click)="onClickAddUser()">
+          Submit
+        </button>
+      </div>
+
+
+    </form>
+  </div>
+  <div>
+    <h2>User List</h2>
+
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">User Name</th>
+        <th scope="col">Role</th>
+        <th style="width: 30%;" scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of userList">
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.userName}}</td>
+        <td>{{user.role}}</td>
+        <td>Delete</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

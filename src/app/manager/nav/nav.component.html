@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="#manager">MANAGER PORTAL</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" [ngClass]="{active:onselectPage === 'dashboard'}" >
+        <a (click)="onSelectPage('dashboard')" class="nav-link">Dashboard</a>
+      </li>
+      <li *ngIf="user&&user.userName" class="nav-item" [ngClass]="{active:onselectPage === 'manageuser'} " >
+        <a (click)="onSelectPage('manageuser')" class="nav-link">Manage User</a>
+      </li>
+      <!--<li class="nav-item">-->
+      <!--<a class="nav-link disabled" href="#">Disabled</a>-->
+      <!--</li>-->
+    </ul>
+    <form class="form-inline mt-2 mt-md-0">
+      <button href="#loginModal" *ngIf="!user||!user.userName" class="btn btn-outline-success my-2 my-sm-0"
+              data-toggle="modal" type="submit">Log In
+      </button>
+      <button *ngIf="user&&user.userName" (click)="logOutOnClick()" class="btn btn-outline-success my-2 my-sm-0">Log
+        Out
+      </button>
+    </form>
+  </div>
+</nav>
+<!-- Login Modal -->
+<div id="loginModal" class="modal fade text-center" *ngIf="!user.userName">
+  <div class="modal-dialog">
+    <div class="col-lg-8 col-sm-8 col-12 main-section">
+      <div class="modal-content">
+        <div class="col-lg-12 col-sm-12 col-12 user-img">
+          <img src="/assets/man01.png">
+        </div>
+        <div class="col-lg-12 col-sm-12 col-12 user-name">
+          <h1>User Login</h1>
+          <button type="button" class="close" data-dismiss="modal" #closeLogin
+          >×
+          </button>
+        </div>
+        <div class="col-lg-12 col-sm-12 col-12 form-input">
+          <form>
+            <div class="form-group">
+              <input type="username" class="form-control" placeholder="User Name" name="username"
+                     [(ngModel)]="login.username">
+              <small id="unalert" *ngIf="!formValidation.username" class="form-text text-danger"
+              > User Name
+                is
+                empty
+              </small>
+
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" class="form-control" placeholder="Password"
+                     [(ngModel)]="login.password">
+            </div>
+            <div class="form-group">
+              <p class="text-danger text-center" *ngIf="displayErrorMessage">{{displayErrorMessage}}</p>
+            </div>
+            <button type=" submit" class="btn btn-success" (click)="loginOnClick()">
+              Log In
+            </button>
+            <small id="passalert" *ngIf="!formValidation.password" class="form-text text-danger"> Password is
+              empty
+            </small>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
