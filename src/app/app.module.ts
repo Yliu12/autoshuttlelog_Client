@@ -19,11 +19,15 @@ import {DriverComponent} from './driver/driver.component';
 import {ManagerComponent} from './manager/manager.component';
 import './rxjs-operators';
 import {LoopStopComponent} from './driver/shuttleinfo/loop-stop/loop-stop.component';
+import {UsermanagementComponent} from './manager/usermanagement/usermanagement.component';
+import {NavComponent} from './manager/nav/nav.component';
+import { DashboardComponent } from './manager/dashboard/dashboard.component';
 
 const appRoutes: Routes = [
   {path: '', component: AppComponent},
   {path: 'driver', component: DriverComponent},
   {path: 'manager', component: ManagerComponent}
+
 
 
   // {path: 'manager', component: }
@@ -39,7 +43,10 @@ const appRoutes: Routes = [
     ShuttleinfoComponent,
     DriverComponent,
     ManagerComponent,
-    LoopStopComponent
+    LoopStopComponent,
+    UsermanagementComponent,
+    NavComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

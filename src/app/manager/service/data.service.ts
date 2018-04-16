@@ -10,6 +10,8 @@ import {of} from 'rxjs/observable/of';
 import {Log} from './log';
 import {AppGlobals} from '../../driver/service/app.global';
 
+
+
 @Injectable()
 export class DataService {
   private logsUrl = '/log';  // URL to web api
