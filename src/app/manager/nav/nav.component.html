@@ -9,7 +9,7 @@
       <li class="nav-item" [ngClass]="{active:onselectPage === 'dashboard'}" >
         <a (click)="onSelectPage('dashboard')" class="nav-link">Dashboard</a>
       </li>
-      <li class="nav-item" [ngClass]="{active:onselectPage === 'manageuser'} " >
+      <li *ngIf="user&&user.userName" class="nav-item" [ngClass]="{active:onselectPage === 'manageuser'} " >
         <a (click)="onSelectPage('manageuser')" class="nav-link">Manage User</a>
       </li>
       <!--<li class="nav-item">-->

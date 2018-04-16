@@ -3,7 +3,7 @@ export class User {
   createTime: number;
   lastUpdateTime: number;
   firstName: string;
-  LastName: string;
+  lastName: string;
   password: string;
   userName: string;
   role: string;

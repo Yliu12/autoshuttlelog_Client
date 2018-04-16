@@ -17,7 +17,7 @@ export class UsermanagementComponent implements OnInit {
     userName: true,
     password: true,
     firstName: true,
-    LastName: true
+    lastName: true
   };
 
   constructor(private userService: UserService) {
@@ -58,7 +58,7 @@ export class UsermanagementComponent implements OnInit {
       userName: true,
       password: true,
       firstName: true,
-      LastName: true
+      lastName: true
     };
 
 
@@ -71,12 +71,12 @@ export class UsermanagementComponent implements OnInit {
     if (this.newUser.firstName == null || this.newUser.firstName === '') {
       this.formValidation.firstName = false;
     }
-    if (this.newUser.LastName == null || this.newUser.LastName === '') {
-      this.formValidation.LastName = false;
+    if (this.newUser.lastName == null || this.newUser.lastName === '') {
+      this.formValidation.lastName = false;
     }
 
 
-    return (this.formValidation.userName && this.formValidation.password && this.formValidation.firstName && this.formValidation.LastName);
+    return (this.formValidation.userName && this.formValidation.password && this.formValidation.firstName && this.formValidation.lastName);
   }
 
 }
