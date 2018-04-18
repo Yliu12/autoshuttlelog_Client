@@ -62,6 +62,7 @@ export class LogentryComponent implements OnInit {
     // check saved logs
     this.logService.readLogfronStorage();
   }
+
   getBusInfo() {
     const busStr = localStorage.getItem('SHUTTLEINFO');
     if (busStr) {
@@ -82,7 +83,7 @@ export class LogentryComponent implements OnInit {
     }, 2000);
 
     // assembly logline
-    this.logLine.driver = this.userinfo.userName;
+    this.logLine.driver = this.shuttleInfo.driverName;
     this.logLine.busId = this.shuttleInfo.id;
     this.logLine.position = this.shuttleInfo.position;
     this.logLine.loopName = this.shuttleInfo.loop;

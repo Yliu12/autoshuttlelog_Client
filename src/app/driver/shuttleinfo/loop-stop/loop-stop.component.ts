@@ -10,7 +10,7 @@ import {EventEmitter} from 'selenium-webdriver';
 export class LoopStopComponent implements OnInit {
   loopValues = [];
   stops = [];
-  @Input() shuttleInfo;
+  @Input() formBus;
   @Input() loopDisplay;
   @Input() stopDisplay;
 
@@ -19,18 +19,23 @@ export class LoopStopComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.formBus = this.readBusInfoFromStorage();
+    if (this.formBus.loop !== '') {
+      this.switchLoopStops(this.formBus.loop);
+    }
+
     this.getLoopData();
   }
 
   onClickLoopOption(loop) {
     this.stops = loop.stops;
-    this.shuttleInfo.loop = loop.loopName;
-    this.shuttleInfo.stop = this.stops.indexOf(this.shuttleInfo.stop) < 0 ? this.stops[0] : this.shuttleInfo.stop;
+    this.formBus.loop = loop.loopName;
+    this.formBus.stop = this.stops.indexOf(this.formBus.stop) < 0 ? this.stops[0] : this.formBus.stop;
   }
 
   onClickStopOption(stop) {
-    this.shuttleInfo.stop = stop;
-    console.log(stop);
+    this.formBus.stop = stop;
+    // console.log(stop);
   }
 
   getLoopData() {
@@ -40,23 +45,33 @@ export class LoopStopComponent implements OnInit {
           return;
         }
         this.loopValues = loops;
-        this.stops = this.loopValues[0].stops;
 
-        this.shuttleInfo.loop = this.shuttleInfo.loop === '' ? loops[0].loopName : this.shuttleInfo.loop;
-        this.shuttleInfo.stop = this.shuttleInfo.stop === '' ? this.stops[0] : this.shuttleInfo.stop;
+        this.formBus.loop = this.formBus.loop === '' ? loops[0].loopName : this.formBus.loop;
+        this.formBus.stop = this.formBus.stop === '' ? this.stops[0] : this.formBus.stop;
 
+        this.switchLoopStops(this.formBus.loop);
       }
     );
   }
 
   goToNextStop() {
-    const currStop = this.shuttleInfo.stop;
+    const currStop = this.formBus.stop;
     const numberofStop = this.stops.indexOf(currStop);
     const nextStopIndex = (numberofStop === this.stops.length - 1 ? this.stops[0] : numberofStop + 1).toString();
-    this.shuttleInfo.stop = this.stops[nextStopIndex];
+    this.formBus.stop = this.stops[nextStopIndex];
 
     // update Shuttle Info
-    localStorage.setItem('SHUTTLEINFO', JSON.stringify(this.shuttleInfo));
+    localStorage.setItem('formBus', JSON.stringify(this.formBus));
+
+  }
+
+  switchLoopStops(loopName: string) {
+    this.loopValues.forEach((loop, index) => {
+      if (loop['loopName'] === loopName) {
+        this.stops = loop['stops'];
+      }
+    });
+
 
   }
 

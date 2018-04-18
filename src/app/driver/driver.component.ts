@@ -18,7 +18,8 @@ export class DriverComponent implements OnInit {
     id: '',
     loop: '',
     stop: '',
-    position: ''
+    position: '',
+    driverName: ''
   };
 
   properties = {
@@ -32,21 +33,15 @@ export class DriverComponent implements OnInit {
   ngOnInit() {
     this.getUser();
     this.userService.readUserFromStorage();
+    this.getLoopData();
 
-
-    this.loopService.getLoopInfo((loops) => {
-      this.shuttle.loop = loops[0].loopName;
-
-      this.shuttle.stop = loops[0].stops[0];
-    });
-
+    this.loopService.getLoopInfo();
   }
 
 
   onNavigate(page: string) {
     this.loadedPage = page;
   }
-
 
 
   getUser(): void {
@@ -65,8 +60,11 @@ export class DriverComponent implements OnInit {
     //  Get Loops & Stops
     this.loopService.getLoopObservable().subscribe(
       (loops) => {
-        this.shuttle.loop = loops[0].loopName;
-        this.shuttle.stop = loops[0].stops[0];
+        if (loops.length === 0) {
+          return;
+        }
+        this.shuttle.loop = this.shuttle.loop === '' ? loops[0].loopName : this.shuttle.loop;
+        this.shuttle.stop = this.shuttle.stop === '' ? loops[0].stops[0] : this.shuttle.stop;
       }
     );
   }

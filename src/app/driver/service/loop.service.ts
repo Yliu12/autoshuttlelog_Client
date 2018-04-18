@@ -31,7 +31,7 @@ export class LoopService {
     };
   }
 
-  readLoopInfoFromStorage() {
+  readLoopDataFromStorage() {
     const loopStr = localStorage.getItem('LOOPS');
     if (loopStr) {
       const loop = JSON.parse(loopStr);
@@ -46,11 +46,9 @@ export class LoopService {
       const bus = JSON.parse(busStr);
       return bus;
     }
-
-
   }
 
-  saveLoopInfoStorage(loops: Loop[]) {
+  saveLoopDataIntoStorage(loops: Loop[]) {
     localStorage.setItem('LOOPS', JSON.stringify(loops));
     console.log(JSON.stringify(loops));
   }
@@ -62,7 +60,7 @@ export class LoopService {
 
   setLoop(loops: Loop[]) {
     this.loop.next(loops);
-    this.saveLoopInfoStorage(loops);
+    this.saveLoopDataIntoStorage(loops);
   }
 
   private requestLoopInfo() {
@@ -76,7 +74,7 @@ export class LoopService {
       ;
   }
 
-  getLoopInfo(callback) {
+  getLoopInfo() {
 
     this.requestLoopInfo().subscribe(
       data => {
@@ -90,12 +88,11 @@ export class LoopService {
 
           this.setLoop((loops));
           this.loops = loops;
-          // callback(loops);
         }
       }
       ,
       err => {
-        this.readLoopInfoFromStorage();
+        this.readLoopDataFromStorage();
         console.error('Oops:', err.message);
       }
     );

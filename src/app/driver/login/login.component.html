@@ -25,6 +25,18 @@
 
   </div>
 
+
+  <!-- Position input -->
+  <div class="form-group">
+    <label for="Positioninput">Driver Name</label>
+    <input class="form-control" id="driverNameInput" [(ngModel)]="login.driverName" name="position"
+           [ngClass]="{'is-valid':login.driverName != ''}"
+    >
+    <small id="driverName" *ngIf="!formValidation.driverName" class="form-text text-danger">Driver Name is empty
+    </small>
+  </div>
+
+
   <!-- Position input -->
   <div class="form-group">
     <label for="Positioninput">Position #</label>
@@ -36,12 +48,12 @@
 
     <!-- Loop & Stop -->
 
-    <app-loop-stop [shuttleInfo]='shuttleInfo' [loopDisplay]='true' [stopDisplay]='true'>
-
-    </app-loop-stop>
   </div>
 
 
+  <app-loop-stop [formBus]='shuttleInfo' [loopDisplay]='true' [stopDisplay]='true'>
+
+  </app-loop-stop>
   <!-- INPUT BUS ID -->
   <div class="form-group">
     <label for="busidinput">Bus ID</label>
