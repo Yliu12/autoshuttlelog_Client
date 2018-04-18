@@ -57,11 +57,11 @@ export class LoopStopComponent implements OnInit {
   goToNextStop() {
     const currStop = this.formBus.stop;
     const numberofStop = this.stops.indexOf(currStop);
-    const nextStopIndex = (numberofStop === this.stops.length - 1 ? this.stops[0] : numberofStop + 1).toString();
+    const nextStopIndex = (numberofStop === this.stops.length - 1 ? 0 : numberofStop + 1).toString();
     this.formBus.stop = this.stops[nextStopIndex];
 
     // update Shuttle Info
-    localStorage.setItem('formBus', JSON.stringify(this.formBus));
+    localStorage.setItem('SHUTTLEINFO', JSON.stringify(this.formBus));
 
   }
 

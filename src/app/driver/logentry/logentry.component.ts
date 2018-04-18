@@ -71,11 +71,6 @@ export class LogentryComponent implements OnInit {
 
   }
 
-  onClickStopOption(stop) {
-    this.shuttleInfo.stop = stop;
-    console.log(stop);
-  }
-
   onClickEnter() {
     this.showSuccessCover = true;
     setTimeout(() => {
