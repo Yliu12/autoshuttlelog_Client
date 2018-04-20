@@ -46,7 +46,7 @@
         </button>
 
         <input class=" input-group-apend form-control text-center" id="boardedinput" [(ngModel)]="logLine.numberBoarded"
-               name="boarded">
+               (change)="logLine.numberBoarded = +logLine.numberBoarded" name="boarded">
 
 
         <button type="button" class="btn btn-secondary input-group-append w-25"
@@ -67,7 +67,7 @@
         </button>
 
         <input class=" input-group-apend form-control text-center" id="leftinput" [(ngModel)]="logLine.numberLeft"
-               name="left">
+               (change)="logLine.numberLeft = +logLine.numberLeft" name="left">
 
         <button type="button" class="btn btn-secondary input-group-append w-25"
                 (click)="logLine.numberLeft = logLine.numberLeft+1">

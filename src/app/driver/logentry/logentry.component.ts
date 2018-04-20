@@ -22,8 +22,6 @@ export class LogentryComponent implements OnInit {
 
   logLine = new Log();
   logs: Log[] = [];
-  toNextStation: Function;
-
   userinfo: User = new User();
 
 
