@@ -1,6 +1,7 @@
 <a name="manager"></a>
 <div class="managerpage">
   <app-nav (changePage)="onNavigate($event)"  (testChange)="onNav($event)"[onselectPage]="loadedPage"></app-nav>
-  <app-dashboard *ngIf="loadedPage == 'dashboard'"></app-dashboard>
+  <app-rawlog *ngIf="loadedPage == 'rawlog'"></app-rawlog>
+  <app-dashbaord *ngIf="loadedPage == 'dashboard'"></app-dashbaord>
   <app-usermanagement *ngIf="loadedPage == 'manageuser'"></app-usermanagement>
 </div>

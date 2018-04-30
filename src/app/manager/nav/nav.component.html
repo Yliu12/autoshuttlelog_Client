@@ -9,6 +9,9 @@
       <li class="nav-item" [ngClass]="{active:onselectPage === 'dashboard'}" >
         <a (click)="onSelectPage('dashboard')" class="nav-link">Dashboard</a>
       </li>
+      <li class="nav-item" [ngClass]="{active:onselectPage === 'rawlog'}" >
+        <a (click)="onSelectPage('rawlog')" class="nav-link">Real Time Log</a>
+      </li>
       <li *ngIf="user&&user.userName" class="nav-item" [ngClass]="{active:onselectPage === 'manageuser'} " >
         <a (click)="onSelectPage('manageuser')" class="nav-link">Manage User</a>
       </li>
@@ -59,7 +62,7 @@
             <div class="form-group">
               <p class="text-danger text-center" *ngIf="displayErrorMessage">{{displayErrorMessage}}</p>
             </div>
-            <button type=" submit" class="btn btn-success" (click)="loginOnClick()">
+            <button type="submit" class="btn btn-success" (click)="loginOnClick()">
               Log In
             </button>
             <small id="passalert" *ngIf="!formValidation.password" class="form-text text-danger"> Password is

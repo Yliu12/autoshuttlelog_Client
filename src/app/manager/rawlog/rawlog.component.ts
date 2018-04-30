@@ -3,11 +3,11 @@ import {DataService} from '../service/data.service';
 import {Log} from '../service/log';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-rawlog',
+  templateUrl: './rawlog.component.html',
+  styleUrls: ['./rawlog.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class RawlogComponent implements OnInit {
   logs: Log[];
 
   constructor(private dataService: DataService) {

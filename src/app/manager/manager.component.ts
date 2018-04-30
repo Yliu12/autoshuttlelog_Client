@@ -14,7 +14,7 @@ import {DataService} from './service/data.service';
 export class ManagerComponent implements OnInit {
 
   JSON;
-  loadedPage = 'dashboard';
+  loadedPage = 'rawlog';
 
   constructor() {
 

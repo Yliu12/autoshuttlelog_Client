@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h5>Passenger Total</h5>
+        </div>
+        <div class="panel-body">
+          {{grandTotal}}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h5>Blue Loop Passenger Total</h5></div>
+        <div class="panel-body">
+          {{this.totals['Blue Loop'].boarded}}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h5>Green Loop Passenger Total</h5></div>
+        <div class="panel-body">
+          {{this.totals['Green Loop'].boarded}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="panel panel-default">
+        <div class="panel-heading">Blue Loop passenger by Hour</div>
+        <div class="panel-body">
+          <div id="d1-c1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
