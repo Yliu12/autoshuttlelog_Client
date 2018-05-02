@@ -21,7 +21,8 @@ import './rxjs-operators';
 import {LoopStopComponent} from './driver/shuttleinfo/loop-stop/loop-stop.component';
 import {UsermanagementComponent} from './manager/usermanagement/usermanagement.component';
 import {NavComponent} from './manager/nav/nav.component';
-import { DashboardComponent } from './manager/dashboard/dashboard.component';
+import {RawlogComponent} from './manager/rawlog/rawlog.component';
+import { DashbaordComponent } from './manager/dashboard/dashbaord.component';
 
 const appRoutes: Routes = [
   {path: '', component: AppComponent},
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
     LoopStopComponent,
     UsermanagementComponent,
     NavComponent,
-    DashboardComponent
+    RawlogComponent,
+    DashbaordComponent
   ],
   imports: [
     BrowserModule,

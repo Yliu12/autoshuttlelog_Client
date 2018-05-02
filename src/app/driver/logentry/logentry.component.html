@@ -1,5 +1,5 @@
 <div class=" container " [hidden]="!showSuccessCover">
-  <div class=" text-center   ">
+  <div class="text-center">
     <img class="mx-auto d-block" src="../../../assets/check-success.png">
     <h1 class="text-success mt-4">SUCCESS</h1>
   </div>
@@ -9,16 +9,19 @@
   <form class="mt-50 container">
     <!-- LBL BUS ID & Loop -->
     <div class="form-group row w-100">
-      <p class="font-weight-bold col-8">
+      <p class="font-weight-bold col medium-text">
         BUS {{shuttleInfo.id === ""? 'Please Enter BUS ID':shuttleInfo.id}}
       </p>
-      <p class=" font-weight-bold text-right col-4">
+      <p class=" font-weight-bold text-right col medium-text">
         {{shuttleInfo.loop}}
+      </p>
+      <p class=" font-weight-bold text-right col medium-text">
+        {{shuttleInfo.driverName}}
       </p>
     </div>
 
     <!-- Stop -->
-    <app-loop-stop [shuttleInfo]='shuttleInfo' [loopDisplay]='false' [stopDisplay]='true'>
+    <app-loop-stop id = "stop" [formBus]='shuttleInfo' [loopDisplay]='false' [stopDisplay]='true'>
 
     </app-loop-stop>
 
@@ -26,7 +29,7 @@
     <div class=" form-group
     ">
       <label for="timeinput">Time</label>
-      <input class="form-control" id="timeinput" aria-describedby="emailHelp"
+      <input class="form-control medium-text" id="timeinput" aria-describedby="emailHelp"
              name="time"
              [ngModel]="logLine.time | date: 'short'"
       >
@@ -42,8 +45,8 @@
           -
         </button>
 
-        <input class=" input-group-apend form-control text-center" id="boardedinput" [(ngModel)]="logLine.numberBoarded"
-               name="boarded">
+        <input class="large-text input-group-apend form-control text-center" id="boardedinput" [(ngModel)]="logLine.numberBoarded"
+               (change)="logLine.numberBoarded = +logLine.numberBoarded" name="boarded">
 
 
         <button type="button" class="btn btn-secondary input-group-append w-25"
@@ -63,8 +66,8 @@
           -
         </button>
 
-        <input class=" input-group-apend form-control text-center" id="leftinput" [(ngModel)]="logLine.numberLeft"
-               name="left">
+        <input class="large-text input-group-apend form-control text-center" id="leftinput" [(ngModel)]="logLine.numberLeft"
+               (change)="logLine.numberLeft = +logLine.numberLeft" name="left">
 
         <button type="button" class="btn btn-secondary input-group-append w-25"
                 (click)="logLine.numberLeft = logLine.numberLeft+1">
@@ -76,7 +79,7 @@
 
     <!-- BTN Login -->
     <div class="form-group mt-2 ">
-      <button type="button" class="btn btn-success w-100 input-group-enter-btn mt-2"
+      <button type="button" class="btn btn-success w-100 input-group-enter-btn mt-2 medium-text"
               (click)="onClickEnter()">
         ENTER
       </button>

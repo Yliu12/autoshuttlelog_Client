@@ -21,13 +21,15 @@ export class LoginComponent implements OnInit {
     loop: '',
     stop: '',
     position: '',
+    driverName: ''
   };
   userinfo = new User;
   formValidation = {
     userName: true,
     password: true,
     position: true,
-    busID: true
+    busID: true,
+    driverName: true
   };
   displayErrorMessage;
 
@@ -59,6 +61,8 @@ export class LoginComponent implements OnInit {
     this.userinfo.userName = this.login.username;
     this.userinfo.password = this.login.password;
     this.shuttleInfo.position = this.login.position;
+    this.shuttleInfo.driverName = this.login.driverName;
+
 
     // ONLINE VERSION CODE
     const loginResult = this.userService.login(this.userinfo, (data) => {
@@ -92,7 +96,8 @@ export class LoginComponent implements OnInit {
       userName: true,
       password: true,
       position: true,
-      busID: true
+      busID: true,
+      driverName: true
     };
 
     if (this.login.username == null || this.login.username === '') {
@@ -104,14 +109,15 @@ export class LoginComponent implements OnInit {
     if (this.login.position == null || this.login.position === '') {
       this.formValidation.position = false;
     }
-    if (this.login.position == null || this.login.position === '') {
-      this.formValidation.position = false;
+    if (this.login.driverName == null || this.login.driverName === '') {
+      this.formValidation.driverName = false;
     }
     if (this.shuttleInfo.id == null || this.shuttleInfo.id === '') {
       this.formValidation.busID = false;
     }
 
-    return (this.formValidation.position && this.formValidation.password && this.formValidation.userName && this.formValidation.busID);
+    return this.formValidation.position && this.formValidation.password &&
+      this.formValidation.userName && this.formValidation.busID && this.formValidation.driverName;
   }
 
   onClickLoopOption(option) {

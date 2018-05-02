@@ -1,7 +1,20 @@
 .input-group-xl {
-  height:15vh;
+  height: 15vh;
 }
 
 .input-group-enter-btn {
-  height:10vh;
+  height: 10vh;
+}
+
+.large-text {
+  font-size: 3vmax;
+}
+
+::ng-deep #stop #dropdownStop {
+  font-size: 2vmax;
+}
+
+
+.medium-text {
+  font-size: 1.5vmax;
 }
