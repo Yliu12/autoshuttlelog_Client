@@ -49,11 +49,12 @@ build Production
 npm run sw-build
 ```
 
-tomcat webapp root
+move /dist folder to tomcat webapp root
 
-for ami server, it's
+
+for ec2 ami server, it's
 
 /usr/share/tomcat8/webapps/Root
 
-Restart Tomcat
+#### Restart Tomcat
 
