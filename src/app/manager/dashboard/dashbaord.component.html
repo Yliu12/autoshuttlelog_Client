@@ -1,5 +1,51 @@
-<div class="container">
-  <div class="row">
+<div class="container mt-3">
+  <h1>Data Summary</h1>
+
+  <!-- Summary Row 1-->
+
+
+  <div class="panel panel-default">
+
+    <div class="panel-heading">
+      <h5>Please Select a Begin Date and End Date</h5>
+    </div>
+
+    <!-- From -->
+    <div class="panel-body">
+      <div class="form-row w-100">
+
+        <div class="col-sm-5 row">
+          <label for="date-from" class="font-weight-bold col-2 col-form-label">From</label>
+          <div class="col-10">
+            <input class="form-control" type="date" value="2011-08-19" id="date-from"
+                   (input)="form.from = parseDate($event.target.value)"
+                   [value]="form.from | date: 'yyyy-MM-dd'">
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <!--<label class="form-check-label mt-2 font-weight-bold">-->
+            <!--<input class="form-check-input" type="checkbox"> One Day Only-->
+          <!--</label>-->
+        </div>
+
+        <!-- To -->
+        <div class="col-sm-4 row" style="text-align: -webkit-right;">
+          <label for="date-to" class="col-2 col-form-label font-weight-bold">To</label>
+          <div class="col-10">
+            <input class="form-control" type="date" (input)="form.to= parseDate($event.target.value)"
+                   [value]="form.to | date: 'yyyy-MM-dd'"
+                   id="date-to">
+          </div>
+        </div>
+        <button  class="col-sm-1" type="submit" class="btn btn-primary mb-2" (click)="onClickSubmit()">Go</button>
+      </div>
+      <h6 class = "mt-3"> Please Select Same date for From and To if you want data from Only that date</h6>
+
+    </div>
+  </div>
+
+  <div class="row mt-2">
     <div class="col-sm-4">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -28,14 +74,97 @@
     </div>
   </div>
 
+  <!-- Summary Row 2-->
+  <div class="row mt-2">
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h5>Red Loop Total</h5>
+        </div>
+        <div class="panel-body">
+          {{this.totals['Red Loop'].boarded}}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h5>Busiest Stop</h5></div>
+        <div class="panel-body">
+          {{this.totals['busiestStop'].name}}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h5>Busiest Stop Boarded Total</h5></div>
+        <div class="panel-body">
+          {{this.totals['busiestStop'].total}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Number Boarded -->
   <div class="row">
     <div class="col">
       <div class="panel panel-default">
-        <div class="panel-heading">Blue Loop passenger by Hour</div>
+        <div class="panel-heading">Passenger by Hour</div>
         <div class="panel-body">
           <div id="d1-c1"></div>
         </div>
       </div>
     </div>
   </div>
+
+
+  <!-- Number Left -->
+  <div class="row">
+    <div class="col">
+      <div class="panel panel-default">
+        <div class="panel-heading">Left at stops by Hour</div>
+        <div class="panel-body">
+          <div id="d1-c2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Green Loop ByStop -->
+  <div class="row">
+    <div class="col">
+      <div class="panel panel-default">
+        <div class="panel-heading">Green Loop</div>
+        <div class="panel-body">
+          <div id="d1-c3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Red Loop ByStop -->
+  <div class="row">
+    <div class="col">
+      <div class="panel panel-default">
+        <div class="panel-heading">Red Loop</div>
+        <div class="panel-body">
+          <div id="d1-c4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Blue Loop ByStop -->
+  <div class="row">
+    <div class="col">
+      <div class="panel panel-default">
+        <div class="panel-heading">Red Loop</div>
+        <div class="panel-body">
+          <div id="d1-c5"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>

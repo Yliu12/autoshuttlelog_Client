@@ -51,10 +51,10 @@ export class DataService {
     );
   }
 
-  getsummary(callback) {
+  getsummary(dates, callback) {
     this.http.post(this.summaryUrl, {
-      'fromDate': 1524542400000,
-      'toDate': Date.now()
+      'fromDate': dates.from,
+      'toDate': dates.to
     }, this.httpOptions).subscribe(
       data => {
         const summary = {
