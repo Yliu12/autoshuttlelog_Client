@@ -1,6 +1,6 @@
 # ShuttlelogClient
 
-## Currently working on Mileston1
+## 
 
 
 
@@ -31,14 +31,29 @@ npm i
 ```
 
 
-Run Preview
+Run develop mode
 ```
 ng serve
 ```
 
-
 go to browser and open 
 
-http://localhost:4200/driver
+http://localhost:4200/#driver
 OR
-http://localhost:4200/manager
+http://localhost:4200/#manager
+
+
+build Production
+
+```
+npm run sw-build
+```
+
+tomcat webapp root
+
+for ami server, it's
+
+/usr/share/tomcat8/webapps/Root
+
+Restart Tomcat
+
