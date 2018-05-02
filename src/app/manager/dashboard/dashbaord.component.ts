@@ -337,9 +337,9 @@ export class DashbaordComponent implements OnInit {
   }
 
   // controller
-  parseDate(dateString: string): Date {
+  parseDate(dateString: string) {
     if (dateString) {
-      return new Date(dateString);
+      return (new Date(dateString)).getTime();
     } else {
       return null;
     }
