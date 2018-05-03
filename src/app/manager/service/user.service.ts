@@ -137,4 +137,35 @@ export class UserService {
 
     return this.http.post(this.userManageUrl, user, header);
   }
+
+  deleteUser(u: User, callback) {
+    if (!this.user.getValue() || !this.user.getValue().token) {
+      return 'Please Login';
+    }
+    this.requestDeleteUser(u).subscribe(
+      data => {
+        if (data) {
+          console.log(data);
+
+          callback(data);
+        }
+      }
+      ,
+      err => {
+        console.error('Oops:', err.message);
+      }
+    );
+  }
+
+
+  private requestDeleteUser(user: User) {
+
+    const deleteurl = this.userManageUrl + '/' + user.id;
+    return this.http.delete(deleteurl, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': this.user.getValue().token
+      })
+    });
+  }
 }

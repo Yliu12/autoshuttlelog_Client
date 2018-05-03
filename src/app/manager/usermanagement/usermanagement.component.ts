@@ -12,7 +12,7 @@ export class UsermanagementComponent implements OnInit {
   userList: User[];
   newUser: User = new User();
   displayErrorMessage: String;
-
+  displayMessage: String;
   formValidation = {
     userName: true,
     password: true,
@@ -39,11 +39,11 @@ export class UsermanagementComponent implements OnInit {
     }
     this.newUser.password = Md5.hashStr(this.newUser.password).toString();
     this.newUser.role = 'DRIVER';
-    this.displayErrorMessage = this.userService.addUser(this.newUser, (data) => {
+    this.userService.addUser(this.newUser, (data) => {
       if (data['respBody']) {
         this.newUser = new User();
         this.displayErrorMessage = 'New User Added';
-
+        this.getUserList();
       } else {
         this.displayErrorMessage = data['error'].msgDes;
       }
@@ -79,4 +79,16 @@ export class UsermanagementComponent implements OnInit {
     return (this.formValidation.userName && this.formValidation.password && this.formValidation.firstName && this.formValidation.lastName);
   }
 
+
+  deleteUsr(user) {
+    this.userService.deleteUser(user, (data) => {
+      if (data['respBody']) {
+        this.displayMessage = 'User Deleted';
+        this.getUserList();
+      } else {
+        this.displayMessage = data['error'].msgDes;
+      }
+
+    });
+  }
 }

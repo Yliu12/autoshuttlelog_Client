@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {UserService} from '../service/user.service';
 import {User} from '../service/user';
+import {LogService} from "../service/logs.service";
 
 @Component({
   selector: 'app-navbar',
@@ -12,8 +13,9 @@ export class NavbarComponent implements OnInit {
   @Output() pageSelected = new EventEmitter<string>();
   @Input() onselectPge;
   userinfo: User = null;
+  logSize = 0;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private logService: LogService) {
 
   }
 
@@ -42,5 +44,24 @@ export class NavbarComponent implements OnInit {
           this.pageSelected.emit('logIn');
         }
       });
+  }
+
+  logoutTabOnClick() {
+    let savedlog = this.logService.getLogs();
+    this.logSize = savedlog.length;
+    this.logService.sendLogs();
+    if (this.logSize === 0) {
+      return;
+    }
+    const logSizeInterval = setInterval(() => {
+
+      savedlog = this.logService.getLogs();
+      this.logSize = savedlog.length;
+
+      if (this.logSize === 0) {
+        clearInterval(logSizeInterval);
+      }
+    }, 1 * 1000);
+
   }
 }

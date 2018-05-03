@@ -16,7 +16,8 @@
         <a class="nav-link " (click)="onSelect('logEntry')">Log Entry</a>
       </li>
       <li *ngIf="userinfo&&userinfo.userName" class="nav-item" [ngClass]="{active:onselectPge == 'logOut'}">
-        <a href="#" class="nav-link " data-toggle="modal" data-target="#logoutconfirmModal">Log Out</a>
+        <a href="#" class="nav-link " data-toggle="modal" data-target="#logoutconfirmModal"
+           (click)="logoutTabOnClick()">Log Out</a>
       </li>
       <!--<li class="nav-item dropdown">-->
       <!--<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>-->
@@ -39,7 +40,10 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="logoutconfirmModalLabel">Are you SURE you want to log out ?</h5>
+        <h5 *ngIf="logSize!= 0" class="modal-title" id="logoutconfirmwait">Uploading {{logSize}} items .... Please
+          connect to Wifi</h5>
+        <h5 class="modal-title" id="logoutconfirmOK" *ngIf="logSize === 0">Data uploated, you are safe to log out
+          now</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -49,7 +53,9 @@
       <!--</div>-->
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
-        <button type="button" class="btn btn-primary" (click)="onSelect('logOut')" data-dismiss="modal">YES!</button>
+        <button [ngClass]="{'btn-danger':logSize!= 0,'btn-success':logSize === 0}" type="button" class="btn"
+                (click)="onSelect('logOut')" data-dismiss="modal">Log Out
+        </button>
       </div>
     </div>
   </div>
